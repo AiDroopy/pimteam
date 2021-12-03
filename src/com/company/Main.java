@@ -1,6 +1,7 @@
 package com.company;
 
 import express.Express;
+import org.eclipse.jetty.server.Authentication;
 
 import java.nio.file.Paths;
 import java.util.List;
@@ -19,9 +20,11 @@ public class Main {
 
         // Get all notes
         app.get("api/notes", (req, res) -> {
-                List<String> notes = db.getNotes();
+                List<Notes> notes = db.getNotes();
                 res.json(notes);
         });
+
+        //Notes notes1 = new Notes();
 
         // Server loop
         app.listen(3000);

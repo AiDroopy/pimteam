@@ -17,14 +17,14 @@ public class Database {
         }
     }
 
-    public List<String> getNotes(){
-        List<String> users = null;
+    public List<Notes> getNotes(){
+        List<Notes> notes = null;
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM notes");
             ResultSet rs = stmt.executeQuery();
 
-            String[] notesFromRS = (String[]) Utils.resultSetToObject(rs, String[].class);
-            users = List.of(notesFromRS);
+            Notes[] notesFromRS = (Notes[]) Utils.resultSetToObject(rs, Notes[].class);
+            notes = List.of(notesFromRS);
 
 
         } catch (SQLException e) {
@@ -34,6 +34,8 @@ public class Database {
             e.printStackTrace();
         }
 
-        return users;
+        return notes;
     }
+
+
 }
