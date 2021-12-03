@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+}
+h1 {
+    margin-left: 5%;
+    font-family: 'Quicksand', sans-serif;
+    color: #94524A;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #CADBC0;
+    position: relative;
+}
+nav {
+    width: 20%;
+    margin-top: 2%;
+    margin-right: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+i,
+.navTxt{
+    color: #94524A;
+    font-family: 'Quicksand', sans-serif;
+}
+#hoover{
+    position: relative;
+    width: 992px;
+    height: 125px;
+}
+#hoover i,
+#hoover .navTxt{
+    transition: opacity 0.5s ease-in-out;
+}
+#hoover .navTxt{
+    position: absolute; 
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+#hoover:hover i {
+    opacity: 0;
+}
+
+#hoover:hover .navTxt {
+    opacity: 1;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+}
