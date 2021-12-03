@@ -3,6 +3,7 @@
 }
 h1 {
     margin-left: 5%;
+    margin-top: 2%;
     font-family: 'Quicksand', sans-serif;
     color: #94524A;
 }
@@ -11,6 +12,9 @@ header {
     justify-content: space-between;
     background-color: #CADBC0;
     position: relative;
+    text-align: center;
+    height: 100px;
+
 }
 nav {
     width: 20%;
@@ -18,7 +22,7 @@ nav {
     margin-right: 2%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     
 }
 i,
@@ -28,8 +32,9 @@ i,
 }
 #hoover{
     position: relative;
-    width: 992px;
-    height: 125px;
+    /* width: 992px;
+    height: 125px; */
+    
 }
 #hoover i,
 #hoover .navTxt{
@@ -49,7 +54,48 @@ i,
 #hoover:hover .navTxt {
     opacity: 1;
 }
+main{
+    width: 70%;
+    margin-left: 20%;
+}
+.form-container{
+    width: 50%;
+    margin-top: 2%;
+    margin-right: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 
+}
+#form{
+    position: relative;
+    width: 992px;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    
+}
+#icon{
+    size: 15;
+}
+
+.form-container i,
+.form-container .formTxt{
+    transition: opacity 0.5s ease-in-out;
+}
+
+.form-container:hover i {
+    opacity: 0;
+}
+.form-container:hover .formTxt{
+    opacity: 1;
+}
+.form-container .formTxt{
+    position: absolute; 
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
 footer {
     position: absolute;
     bottom: 0;
