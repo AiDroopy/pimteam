@@ -1,3 +1,6 @@
+* {
+    margin: 0;
+}
 h1 {
     margin-left: 5%;
     font-family: 'Quicksand', sans-serif;
@@ -7,6 +10,7 @@ header {
     display: flex;
     justify-content: space-between;
     background-color: #CADBC0;
+    position: relative;
 }
 nav {
     width: 20%;
