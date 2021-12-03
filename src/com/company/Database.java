@@ -23,7 +23,7 @@ public class Database {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM notes");
             ResultSet rs = stmt.executeQuery();
 
-            String[] notesFromRS = (String[]) Utils.resultSetToObject(rs, User[].class);
+            String[] notesFromRS = (String[]) Utils.resultSetToObject(rs, String[].class);
             users = List.of(notesFromRS);
 
 

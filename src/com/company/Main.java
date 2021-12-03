@@ -21,10 +21,6 @@ public class Main {
         app.get("api/notes", (req, res) -> {
                 List<String> notes = db.getNotes();
                 res.json(notes);
-
-            else {
-                res.status(403);
-            }
         });
 
         // Server loop
