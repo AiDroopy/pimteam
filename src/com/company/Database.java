@@ -1,8 +1,10 @@
 package com.company;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import nosqlite.utilities.Utils;
+
+import java.sql.*;
+import java.util.List;
 
 public class Database {
     private Connection conn;
@@ -15,5 +17,23 @@ public class Database {
         }
     }
 
+    public List<String> getNotes(){
+        List<String> users = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM notes");
+            ResultSet rs = stmt.executeQuery();
 
+            String[] notesFromRS = (String[]) Utils.resultSetToObject(rs, User[].class);
+            users = List.of(notesFromRS);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return users;
+    }
 }
