@@ -1,3 +1,4 @@
+// render header for application
 function renderHeader(){
     return `
     
