@@ -1,46 +1,54 @@
 * {
     margin: 0;
 }
+a {
+    text-decoration: none;
+}
+
 h1 {
-    margin-left: 5%;
-    margin-top: 2%;
+    padding: 20%;
+    width: 20%;
+    margin-left: 20%;
     font-family: 'Quicksand', sans-serif;
     color: #94524A;
 }
 header {
+    height: 10vh;
     display: flex;
     justify-content: space-between;
     background-color: #CADBC0;
     position: relative;
     text-align: center;
-    height: 100px;
 
 }
 nav {
+    padding: 2%;
     width: 20%;
-    margin-top: 2%;
-    margin-right: 2%;
+    margin-right: 3%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    
+    justify-content: space-around; 
 }
 i,
-.navTxt{
+.navTxt,
+.formTxt{
     color: #94524A;
     font-family: 'Quicksand', sans-serif;
 }
+.formTxt{
+    display: flex;
+    flex-direction: row;
+}
 #hoover{
-    position: relative;
-    /* width: 992px;
-    height: 125px; */
-    
+    position: relative;  
 }
 #hoover i,
-#hoover .navTxt{
-    transition: opacity 0.5s ease-in-out;
+#hoover .navTxt,
+#hoover .formTxt{
+    transition: opacity 0.9s ease-in-out;
 }
-#hoover .navTxt{
+#hoover .navTxt,
+#hoover .formTxt{
     position: absolute; 
     top: 0;
     left: 0;
@@ -51,51 +59,23 @@ i,
     opacity: 0;
 }
 
-#hoover:hover .navTxt {
+#hoover:hover .navTxt, #hoover:hover .formTxt {
     opacity: 1;
 }
-main{
-    width: 70%;
-    margin-left: 20%;
-}
+
 .form-container{
-    width: 50%;
-    margin-top: 2%;
-    margin-right: 25%;
+    size: 80%;
+    padding: 10%;
+    margin: auto;
+    text-align: center;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-
 }
-#form{
-    position: relative;
-    width: 992px;
-    height: 125px;
-    display: flex;
-    flex-direction: column;
-    
-}
-#icon{
-    size: 15;
+.form-container i{
+    font-size: 50px;
 }
 
-.form-container i,
-.form-container .formTxt{
-    transition: opacity 0.5s ease-in-out;
-}
-
-.form-container:hover i {
-    opacity: 0;
-}
-.form-container:hover .formTxt{
-    opacity: 1;
-}
-.form-container .formTxt{
-    position: absolute; 
-    top: 0;
-    left: 0;
-    opacity: 0;
-}
 footer {
     position: absolute;
     bottom: 0;
