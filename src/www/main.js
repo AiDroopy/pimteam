@@ -14,11 +14,13 @@ function changePage() {
     switch(page){
         
         case "files":
-
+            
         break;
 
         case "notes":
-        
+            document.querySelector('main').innerHTML = `<div class='note-container'></div>`;
+            
+            document.querySelector('.note-container').innerHTML = getNotes();
         break;
 
         case "images":
