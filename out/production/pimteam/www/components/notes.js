@@ -18,7 +18,7 @@ function renderNotes(){
         let noteLi = `
             <li>
                 Header: ${note.header} <br>
-                Note: ${note.note} <br>
+                Note: ${note.notes} <br>
             </li> <br>
         `;
 
