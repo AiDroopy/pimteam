@@ -37,6 +37,29 @@ public class Database {
         return notes;
     }
 
+    public Note getNoteById(int id){
+        Note note = null;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notes WHERE id=?");
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            Note[] userFromRS = (Note[]) Utils.resultSetToObject(rs, Note[].class);
+
+            note = userFromRS[0];
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return note;
+    }
+
     public void createNote(Note note){
         try {
             PreparedStatement stmt = conn.prepareStatement(("INSERT INTO Notes (notes, UserId, header) VALUES(?, ?, ?)"));

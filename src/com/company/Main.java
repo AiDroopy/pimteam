@@ -23,11 +23,16 @@ public class Main {
                 res.json(notes);
         });
 
+        app.get("api/notes/:id", (req, res) ->{
+            int id = Integer.parseInt(req.params("id"));
+            Note note = db.getNoteById(id);
+            res.json(note);
+
+        });
+
         // Create a note
         app.post("api/notes", (req, res) -> {
             Note note = (Note) req.body(Note.class);
-            System.out.println("INSERT: ");
-            System.out.println(note.toString());
             db.createNote(note);
             res.send(note.getHeader() + " created");
         });
@@ -35,12 +40,9 @@ public class Main {
         // Update a note
         app.put("/api/notes", (req, res) -> {
             Note note = (Note) req.body(Note.class);
-
             db.updateNote(note);
             res.send(note.getHeader() + " updated!");
         });
-
-
 
         // Server loop
         app.listen(3000);
