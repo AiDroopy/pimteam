@@ -13,15 +13,18 @@ async function getNotes(){
 function renderNotes(){
     let noteList = document.querySelector('.note-container');
 
+    noteList.innerHTML = "";
+
     for(let note of notes){
 
         let noteLi = `
-            <li>
-                Header: ${note.header} <br>
-                Note: ${note.notes} <br>
-            </li> <br>
+            <div id="listTxt">
+                <a href="#goNote"><h2>${note.header}</h2></a>  
+                <h3>${note.notes}</h3> 
+            </div>
         `;
 
         noteList.innerHTML += noteLi;
     }
 }
+

@@ -17,13 +17,13 @@ public class Database {
         }
     }
 
-    public List<Notes> getNotes(){
-        List<Notes> notes = null;
+    public List<Note> getAllNotes(){
+        List<Note> notes = null;
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM notes");
             ResultSet rs = stmt.executeQuery();
 
-            Notes[] notesFromRS = (Notes[]) Utils.resultSetToObject(rs, Notes[].class);
+            Note[] notesFromRS = (Note[]) Utils.resultSetToObject(rs, Note[].class);
             notes = List.of(notesFromRS);
 
 
@@ -37,5 +37,122 @@ public class Database {
         return notes;
     }
 
+    public Note getNoteById(int id){
+        Note note = null;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notes WHERE id=?");
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            Note[] noteFromRS = (Note[]) Utils.resultSetToObject(rs, Note[].class);
+
+            note = noteFromRS[0];
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return note;
+    }
+
+    public void createNote(Note note){
+        try {
+            PreparedStatement stmt = conn.prepareStatement(("INSERT INTO Notes (notes, UserId, header) VALUES(?, ?, ?)"));
+            stmt.setString(1, note.getNotes());
+            stmt.setInt(2, note.getUserId());
+            stmt.setString(3, note.getHeader());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateNote(Note note){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET notes=?, UserId=?, header=? WHERE id=?");
+            stmt.setString(1, note.getNotes());
+            stmt.setInt(2, note.getUserId());
+            stmt.setString(3, note.getHeader());
+            stmt.setInt(4, note.getId());
+
+            stmt.executeUpdate();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    // Returns true if operation was a success, false if Error
+    public boolean deleteNote(Note note){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Notes WHERE id=?");
+            stmt.setInt(1, note.getId());
+
+            stmt.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return false;
+    }
+
+    // SELECT * FROM Notes WHERE header LIKE '%irs%'
+    public Note[] getNoteByHeader(String header){
+        Note[] note = null;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notes WHERE header LIKE ?");
+            stmt.setString(1, "%"+ header +"%");
+
+            ResultSet rs = stmt.executeQuery();
+
+            Note[] headerFromRS = (Note[]) Utils.resultSetToObject(rs, Note[].class);
+
+            note = headerFromRS;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return note;
+    }
+
+    public Note[] getNoteByNotes(String searchNotes){
+        Note[] note = null;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notes WHERE notes LIKE ?");
+            stmt.setString(1, "%"+ searchNotes +"%");
+
+            ResultSet rs = stmt.executeQuery();
+
+            Note[] notesFromRS = (Note[]) Utils.resultSetToObject(rs, Note[].class);
+
+            note = notesFromRS;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return note;
+    }
 
 }

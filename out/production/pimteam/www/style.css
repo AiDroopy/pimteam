@@ -72,6 +72,25 @@ i,
     flex-direction: row;
     justify-content: space-around;
 }
+.note-container {
+    size: 80%;
+    padding: 10%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.note-container #listTxt{
+    color: #94524A;
+    font-family: 'Quicksand', sans-serif;
+    text-align: left;
+    font-size: 18px;
+}
+#listTxt h2{
+    color: #94524A;
+    font-family: 'Quicksand', sans-serif;
+}
 .form-container i{
     font-size: 50px;
 }
