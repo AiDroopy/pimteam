@@ -23,6 +23,7 @@ public class Main {
                 res.json(notes);
         });
 
+        // Get note by id
         app.get("api/notes/:id", (req, res) ->{
             int id = Integer.parseInt(req.params("id"));
             Note note = db.getNoteById(id);
@@ -38,10 +39,22 @@ public class Main {
         });
 
         // Update a note
-        app.put("/api/notes", (req, res) -> {
+        app.put("/api/notes/:id", (req, res) -> {
             Note note = (Note) req.body(Note.class);
             db.updateNote(note);
             res.send(note.getHeader() + " updated!");
+        });
+
+        // Delete note
+        app.delete("api/notes/:id", (req, res) -> {
+            Note note = (Note) req.body(Note.class);
+
+
+            boolean deleted = db.deleteNote(note);
+            if (deleted == true){
+                res.send("Note deleted!");
+            }
+            else res.send("Something went really wrong!");
         });
 
         // Server loop

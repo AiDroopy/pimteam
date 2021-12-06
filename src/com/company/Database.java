@@ -91,5 +91,22 @@ public class Database {
 
     }
 
+    // Returns true if operation was a success, false if Error
+    public boolean deleteNote(Note note){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Notes WHERE id=?");
+            stmt.setInt(1, note.getId());
+
+            stmt.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return false;
+    }
+
 
 }
