@@ -17,13 +17,13 @@ public class Database {
         }
     }
 
-    public List<Notes> getNotes(){
-        List<Notes> notes = null;
+    public List<Note> getAllNotes(){
+        List<Note> notes = null;
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM notes");
             ResultSet rs = stmt.executeQuery();
 
-            Notes[] notesFromRS = (Notes[]) Utils.resultSetToObject(rs, Notes[].class);
+            Note[] notesFromRS = (Note[]) Utils.resultSetToObject(rs, Note[].class);
             notes = List.of(notesFromRS);
 
 
@@ -37,7 +37,7 @@ public class Database {
         return notes;
     }
 
-    public void createNote(Notes note){
+    public void createNote(Note note){
         try {
             PreparedStatement stmt = conn.prepareStatement(("INSERT INTO Notes (notes, UserId, header) VALUES(?, ?, ?)"));
             stmt.setString(1, note.getNotes());
@@ -49,6 +49,23 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void updateNote(Note note){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET notes=?, UserId=?, header=? WHERE id=?");
+            stmt.setString(1, note.getNotes());
+            stmt.setInt(2, note.getUserId());
+            stmt.setString(3, note.getHeader());
+            stmt.setInt(4, note.getId());
+
+            stmt.executeUpdate();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

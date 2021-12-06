@@ -1,16 +1,16 @@
 package com.company;
 
-public class Notes {
+public class Note {
     private int id;
     private String notes;
     private int userId;
     private String header;
 
     //default constructor
-    public Notes() {
+    public Note() {
     }
 
-    public Notes(int id, String notes, int userId, String header) {
+    public Note(int id, String notes, int userId, String header) {
         this.id = id;
         this.notes = notes;
         this.userId = userId;
