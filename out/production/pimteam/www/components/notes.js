@@ -13,6 +13,8 @@ async function getNotes(){
 function renderNotes(){
     let noteList = document.querySelector('.note-container');
 
+    noteList.innerHTML = "";
+
     for(let note of notes){
 
         let noteLi = `

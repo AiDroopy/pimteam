@@ -59,9 +59,17 @@ public class Main {
 
         // Search note by header
 
-        app.get("api/notes/search/:header", (req, res) ->{
+        app.get("api/notes/search/header/:header", (req, res) ->{
             String header = (String) (req.params("header"));
             Note note[] = db.getNoteByHeader(header);
+            res.json(note);
+
+        });
+
+        // Search by bodyText
+        app.get("api/notes/search/notes/:notes", (req, res) ->{
+            String notes = (String) (req.params("notes"));
+            Note note[] = db.getNoteByNotes(notes);
             res.json(note);
 
         });

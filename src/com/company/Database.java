@@ -46,9 +46,9 @@ public class Database {
 
             ResultSet rs = stmt.executeQuery();
 
-            Note[] userFromRS = (Note[]) Utils.resultSetToObject(rs, Note[].class);
+            Note[] noteFromRS = (Note[]) Utils.resultSetToObject(rs, Note[].class);
 
-            note = userFromRS[0];
+            note = noteFromRS[0];
 
 
         } catch (SQLException e) {
@@ -118,9 +118,32 @@ public class Database {
 
             ResultSet rs = stmt.executeQuery();
 
-            Note[] userFromRS = (Note[]) Utils.resultSetToObject(rs, Note[].class);
+            Note[] headerFromRS = (Note[]) Utils.resultSetToObject(rs, Note[].class);
 
-            note = userFromRS;
+            note = headerFromRS;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return note;
+    }
+
+    public Note[] getNoteByNotes(String searchNotes){
+        Note[] note = null;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notes WHERE notes LIKE ?");
+            stmt.setString(1, "%"+ searchNotes +"%");
+
+            ResultSet rs = stmt.executeQuery();
+
+            Note[] notesFromRS = (Note[]) Utils.resultSetToObject(rs, Note[].class);
+
+            note = notesFromRS;
 
 
         } catch (SQLException e) {
