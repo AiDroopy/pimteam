@@ -19,8 +19,8 @@ function changePage() {
 
         case "notes":
             document.querySelector('main').innerHTML = `<div class='note-container'></div>`;
-            
             document.querySelector('.note-container').innerHTML = getNotes();
+
         break;
 
         case "images":
@@ -29,7 +29,7 @@ function changePage() {
 
         default: 
 
-        // empty HTML for main
+        // empty HTML for main and add div form-container
             document.querySelector('main').innerHTML = `<div class='form-container'></div>`
         // add HTML to main
             document.querySelector('.form-container').innerHTML =  `
