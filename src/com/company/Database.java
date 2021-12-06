@@ -108,5 +108,28 @@ public class Database {
         return false;
     }
 
+    // SELECT * FROM Notes WHERE header LIKE '%irs%'
+    public Note[] getNoteByHeader(String header){
+        Note[] note = null;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notes WHERE header LIKE ?");
+            stmt.setString(1, "%"+ header +"%");
+
+            ResultSet rs = stmt.executeQuery();
+
+            Note[] userFromRS = (Note[]) Utils.resultSetToObject(rs, Note[].class);
+
+            note = userFromRS;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return note;
+    }
 
 }

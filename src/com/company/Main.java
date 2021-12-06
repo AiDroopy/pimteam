@@ -57,6 +57,15 @@ public class Main {
             else res.send("Something went really wrong!");
         });
 
+        // Search note by header
+
+        app.get("api/notes/search/:header", (req, res) ->{
+            String header = (String) (req.params("header"));
+            Note note[] = db.getNoteByHeader(header);
+            res.json(note);
+
+        });
+
         // Server loop
         app.listen(3000);
         System.out.println("Server started on port 3000");
