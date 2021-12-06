@@ -24,7 +24,13 @@ public class Main {
                 res.json(notes);
         });
 
-        //Notes notes1 = new Notes();
+        app.post("api/notes", (req, res) -> {
+            Notes note = (Notes) req.body(Notes.class);
+            System.out.println("INSERT: ");
+            System.out.println(note.toString());
+            db.createNote(note);
+            res.send(note.getHeader() + " created");
+        });
 
         // Server loop
         app.listen(3000);

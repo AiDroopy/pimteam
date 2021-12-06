@@ -37,5 +37,19 @@ public class Database {
         return notes;
     }
 
+    public void createNote(Notes note){
+        try {
+            PreparedStatement stmt = conn.prepareStatement(("INSERT INTO Notes (notes, UserId, header) VALUES(?, ?, ?)"));
+            stmt.setString(1, note.getNotes());
+            stmt.setInt(2, note.getUserId());
+            stmt.setString(3, note.getHeader());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
