@@ -36,6 +36,7 @@ function renderAddNotes(){
     `
 }
 
+//Create and add note to database
 async function createNote(e) {
     e.preventDefault();
 

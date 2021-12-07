@@ -13,7 +13,7 @@ function changePage() {
 
     switch(page){
         
-        case "files":
+        case "addFile":
             document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="addFile(event)"></form>`;
             document.querySelector('.addForm').innerHTML = renderAddFiles();
         break;
@@ -36,6 +36,11 @@ function changePage() {
 
         break;
 
+        case "addImage":
+            document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="addImage(event)"></form>`;
+            document.querySelector('.addForm').innerHTML = renderAddImage();
+        break;
+
         default: 
 
         // empty HTML for main and add div form-container
@@ -43,8 +48,8 @@ function changePage() {
         // add HTML to main
             document.querySelector('.form-container').innerHTML =  `
                 <a id="hoover" href="#addNote"><i class="far fa-sticky-note"></i><div class="formTxt">Add note<i class="fas fa-plus"></i></div></a>
-                <a id="hoover"><i class="fas fa-camera-retro"></i><div class="formTxt">Add image<i class="fas fa-plus"></i></div></a>
-                <a id="hoover"><i class="fas fa-file-archive"></i><div class="formTxt">Add file<i class="fas fa-plus"></i></div></a>
+                <a id="hoover" href="#addImage"><i class="fas fa-camera-retro"></i><div class="formTxt">Add image<i class="fas fa-plus"></i></div></a>
+                <a id="hoover" href="#addFile"><i class="fas fa-file-archive"></i><div class="formTxt">Add file<i class="fas fa-plus"></i></div></a>
                 `
         break;
     } 

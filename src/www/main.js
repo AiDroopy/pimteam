@@ -36,6 +36,11 @@ function changePage() {
 
         break;
 
+        case "addImage":
+            document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="addImage(event)"></form>`;
+            document.querySelector('.addForm').innerHTML = renderAddImage();
+        break;
+
         default: 
 
         // empty HTML for main and add div form-container
