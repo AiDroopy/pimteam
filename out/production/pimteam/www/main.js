@@ -14,7 +14,8 @@ function changePage() {
     switch(page){
         
         case "files":
-            
+            document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="addFile(event)"></form>`;
+            document.querySelector('.addForm').innerHTML = renderAddFiles();
         break;
 
         case "notes":
@@ -26,8 +27,8 @@ function changePage() {
 
         case "addNote":
             
-            document.querySelector('main').innerHTML = `<form class='addNoteForm' onsubmit="createNote(event)"></form>`;
-            document.querySelector('.addNoteForm').innerHTML = renderAddNotes();
+            document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="createNote(event)"></form>`;
+            document.querySelector('.addForm').innerHTML = renderAddNotes();
                 
         break;
 
