@@ -26,7 +26,7 @@ function changePage() {
 
         case "addNote":
             
-            document.querySelector('main').innerHTML = `<form class='addNoteForm' onsubmit="createPost(event)"></form>`;
+            document.querySelector('main').innerHTML = `<form class='addNoteForm' onsubmit="createNote(event)"></form>`;
             document.querySelector('.addNoteForm').innerHTML = renderAddNotes();
                 
         break;

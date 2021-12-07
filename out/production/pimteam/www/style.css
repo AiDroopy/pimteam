@@ -74,12 +74,13 @@ i,
 }
 .note-container {
     size: 80%;
-    padding: 10%;
+    padding: 15%;
     margin: auto;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    overflow-y: scroll;
 }
 .note-container #listTxt{
     color: #94524A;
@@ -91,6 +92,7 @@ i,
     color: #94524A;
     font-family: 'Quicksand', sans-serif;
 }
+
 .form-container i{
     font-size: 50px;
 }
@@ -98,4 +100,16 @@ i,
 footer {
     position: absolute;
     bottom: 0;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+    position: center;
+}
+
+input, 
+textarea {
+    width: 100%;
+    margin: 5px 0;
 }
