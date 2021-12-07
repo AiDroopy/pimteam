@@ -30,7 +30,7 @@ function renderNotes(){
 
 function renderAddNotes(){
    return ` <h3>Create note</h3>
-                    <input id="header" required type="text" placeholder="Header">
+                    <input id="header" required type="text" placeholder="header">
                     <textarea id="notes" required placeholder="content" cols="30" rows="10"></textarea>
                     <button id="addBtn" type="submit">Add note</button>
     `
@@ -43,9 +43,10 @@ async function createNote(e) {
     let notesInput = document.querySelector('#notes');
 
     let note = {
+        /*Always user 1, until login works. Global user*/
         userId: 1,
         header: headerInput.value,
-        notes: notesInput.value
+        notes: notesInput.value,
     }
 
     let result = await fetch("api/notes", {
