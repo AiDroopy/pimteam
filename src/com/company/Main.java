@@ -1,7 +1,10 @@
 package com.company;
 
 import express.Express;
+import io.javalin.http.UploadedFile;
 
+import java.io.FileOutputStream;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -73,6 +76,38 @@ public class Main {
             res.json(note);
 
         });
+
+        app.post("/api/images", (req, res) -> {
+            //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
+            UploadedFile file = req.formDataFile("files");          // get a single file
+
+            // with FileOutputStream
+            Path path = Paths.get("src/images/1/" + file.getFilename());
+            System.out.println(path.toString());
+            try (FileOutputStream os = new FileOutputStream(path.toString())) {
+                os.write(file.getContent().readAllBytes()); // write to file
+            }
+
+
+            // with FileUtil (creates dirs if necessary) !!!! ANVÄNDER VI TILL CREATE USER!!!
+            //FileUtil.streamToFile(file.getContent(), "src/images/" + file.getFilename());
+        });
+
+        app.post("/api/documents", (req, res) -> {
+            //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
+            UploadedFile file = req.formDataFile("files");          // get a single file
+
+            // with FileOutputStream
+            Path path = Paths.get("src/documents/1/" + file.getFilename());
+
+            try (FileOutputStream os = new FileOutputStream(path.toString())) {
+                os.write(file.getContent().readAllBytes()); // write to file
+            }
+
+            // with FileUtil (creates dirs if necessary)
+            //FileUtil.streamToFile(file.getContent(), "src/files/1/" + file.getFilename());
+        });
+
 
         // Server loop
         app.listen(3000);
