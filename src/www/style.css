@@ -1,19 +1,24 @@
 * {
     margin: 0;
+    max-width: 100%;
+    overflow-x: hidden;
 }
+
 a {
     text-decoration: none;
+    width: 15%;
 }
 
 h1 {
-    padding: 20%;
-    width: 20%;
-    margin-left: 20%;
+    text-align: left;
+    width: 100%;
+    padding: 10%;
     font-family: 'Quicksand', sans-serif;
     color: #94524A;
 }
 header {
-    height: 10vh;
+    height: 15vh;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     background-color: #CADBC0;
@@ -24,14 +29,15 @@ header {
 nav {
     padding: 2%;
     width: 20%;
-    margin-right: 3%;
     display: flex;
     flex-direction: row;
     justify-content: space-around; 
 }
 i,
 .navTxt,
-.formTxt{
+.formTxt,
+h3,
+#addBtn{
     color: #94524A;
     font-family: 'Quicksand', sans-serif;
 }
@@ -72,7 +78,7 @@ i,
     flex-direction: row;
     justify-content: space-around;
 }
-.note-container {
+.note-container{
     size: 80%;
     padding: 15%;
     margin: auto;
@@ -98,6 +104,33 @@ i,
 }
 
 footer {
-    position: absolute;
+    width: 100%;
+    height: 5vh;
+    background-color: #CADBC0;
+    position: fixed;
     bottom: 0;
+    padding: 1%;
+    overflow-y: auto;
+}
+
+/*add note css-styles*/
+form {
+    max-width: 400px;
+    margin: auto;
+    position: center;
+} 
+
+input, 
+textarea {
+    width: 100%;
+    margin: 5px 0;
+}
+.addForm{
+    padding: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+#addBtn{
+    width: 20%;
 }
