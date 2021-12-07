@@ -18,9 +18,17 @@ function changePage() {
         break;
 
         case "notes":
+
             document.querySelector('main').innerHTML = `<div class='note-container'></div>`;
             document.querySelector('.note-container').innerHTML = getNotes();
 
+        break;
+
+        case "addNote":
+            
+            document.querySelector('main').innerHTML = `<form class='addNoteForm' onsubmit="createPost(event)"></form>`;
+            document.querySelector('.addNoteForm').innerHTML = renderAddNotes();
+                
         break;
 
         case "images":

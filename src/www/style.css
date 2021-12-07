@@ -101,3 +101,15 @@ footer {
     position: absolute;
     bottom: 0;
 }
+
+form {
+    max-width: 400px;
+    margin: auto;
+    position: center;
+}
+
+input, 
+textarea {
+    width: 100%;
+    margin: 5px 0;
+}

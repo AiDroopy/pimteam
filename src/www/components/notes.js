@@ -13,7 +13,7 @@ async function getNotes(){
 function renderNotes(){
     let noteList = document.querySelector('.note-container');
 
-    noteList.innerHTML = "";
+    noteList.innerHTML = "<a class='adding' href=#addNote>Add note</a>";
 
     for(let note of notes){
 
@@ -28,3 +28,10 @@ function renderNotes(){
     }
 }
 
+function renderAddNotes(){
+   return ` <h3>Create note</h3>
+                    <input id="title" required type="text" placeholder="title">
+                    <textarea id="content" required placeholder="content" cols="30" rows="10"></textarea>
+                    <button type="submit">Create note</button>
+    `
+}
