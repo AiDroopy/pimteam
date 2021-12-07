@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+
+h1 {
+    padding: 20%;
+    width: 20%;
+    margin-left: 20%;
+    font-family: 'Quicksand', sans-serif;
+    color: #94524A;
+}
+header {
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    background-color: #CADBC0;
+    position: relative;
+    text-align: center;
+
+}
+nav {
+    padding: 2%;
+    width: 20%;
+    margin-right: 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+}
+i,
+.navTxt,
+.formTxt{
+    color: #94524A;
+    font-family: 'Quicksand', sans-serif;
+}
+.formTxt{
+    display: flex;
+    flex-direction: row;
+}
+#hoover{
+    position: relative;  
+}
+#hoover i,
+#hoover .navTxt,
+#hoover .formTxt{
+    transition: opacity 0.9s ease-in-out;
+}
+#hoover .navTxt,
+#hoover .formTxt{
+    position: absolute; 
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+#hoover:hover i {
+    opacity: 0;
+}
+
+#hoover:hover .navTxt, #hoover:hover .formTxt {
+    opacity: 1;
+}
+
+.form-container{
+    size: 80%;
+    padding: 10%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.note-container {
+    size: 80%;
+    padding: 15%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    overflow-y: scroll;
+}
+.note-container #listTxt{
+    color: #94524A;
+    font-family: 'Quicksand', sans-serif;
+    text-align: left;
+    font-size: 18px;
+}
+#listTxt h2{
+    color: #94524A;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.form-container i{
+    font-size: 50px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+}
