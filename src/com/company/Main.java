@@ -82,7 +82,7 @@ public class Main {
             UploadedFile file = req.formDataFile("files");          // get a single file
 
             // with FileOutputStream
-            Path path = Paths.get("src/images/1/" + file.getFilename());
+            Path path = Paths.get("src/www/images/1/" + file.getFilename());
             System.out.println(path.toString());
             try (FileOutputStream os = new FileOutputStream(path.toString())) {
                 os.write(file.getContent().readAllBytes()); // write to file
@@ -98,7 +98,7 @@ public class Main {
             UploadedFile file = req.formDataFile("files");          // get a single file
 
             // with FileOutputStream
-            Path path = Paths.get("src/documents/1/" + file.getFilename());
+            Path path = Paths.get("src/www/documents/1/" + file.getFilename());
 
             try (FileOutputStream os = new FileOutputStream(path.toString())) {
                 os.write(file.getContent().readAllBytes()); // write to file
