@@ -32,7 +32,9 @@ nav {
 }
 i,
 .navTxt,
-.formTxt{
+.formTxt,
+h3,
+#addBtn{
     color: #94524A;
     font-family: 'Quicksand', sans-serif;
 }

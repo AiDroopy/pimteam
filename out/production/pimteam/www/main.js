@@ -2,7 +2,7 @@
 //renders constant header from header.js
 document.querySelector('header').innerHTML = renderHeader();
 
-onhashchange = changePage();
+onhashchange = changePage;
 
 changePage();
 
@@ -41,7 +41,7 @@ function changePage() {
             document.querySelector('main').innerHTML = `<div class='form-container'></div>`
         // add HTML to main
             document.querySelector('.form-container').innerHTML =  `
-                <a id="hoover"><i class="far fa-sticky-note"></i><div class="formTxt">Add note<i class="fas fa-plus"></i></div></a>
+                <a id="hoover" href="#addNote"><i class="far fa-sticky-note"></i><div class="formTxt">Add note<i class="fas fa-plus"></i></div></a>
                 <a id="hoover"><i class="fas fa-camera-retro"></i><div class="formTxt">Add image<i class="fas fa-plus"></i></div></a>
                 <a id="hoover"><i class="fas fa-file-archive"></i><div class="formTxt">Add file<i class="fas fa-plus"></i></div></a>
                 `
