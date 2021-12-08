@@ -90,7 +90,7 @@ public class Main {
 
 
             // with FileUtil (creates dirs if necessary) !!!! ANVÄNDER VI TILL CREATE USER!!!
-            //FileUtil.streamToFile(file.getContent(), "src/images/" + file.getFilename());
+            // FileUtil.streamToFile(file.getContent(), "src/images/" + file.getFilename());
         });
 
         app.post("/api/documents", (req, res) -> {
