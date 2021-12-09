@@ -80,13 +80,24 @@ public class Main {
 
         app.post("/api/images", (req, res) -> {
             //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
-            UploadedFile file = req.formDataFile("files");          // get a single file
+            UploadedFile file = req.formDataFile("files"); // get a single file
+            String header = req.formData("header"); // created header key-value
+
 
             // with FileOutputStream
             Path path = Paths.get("src/www/images/1/" + file.getFilename());
             System.out.println(path.toString());
+
             try (FileOutputStream os = new FileOutputStream(path.toString())) {
                 os.write(file.getContent().readAllBytes()); // write to file
+
+
+                Attachment attachment = new Attachment(path.toString(), 1, header); // created attachment object
+
+                boolean test = db.setImageUrl(attachment);
+                System.out.println(test); // debug statement true or false
+                res.send("OK");
+
             }
 
 

@@ -27,11 +27,9 @@ public class Database {
             notes = List.of(notesFromRS);
 
 
-        } catch (SQLException e) {
+        } catch (SQLException | JsonProcessingException e) {
             e.printStackTrace();
 
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
         }
 
         return notes;
@@ -51,9 +49,7 @@ public class Database {
             note = noteFromRS[0];
 
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (JsonProcessingException e) {
+        } catch (SQLException | JsonProcessingException e) {
             e.printStackTrace();
         }
 
@@ -123,9 +119,7 @@ public class Database {
             note = headerFromRS;
 
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (JsonProcessingException e) {
+        } catch (SQLException | JsonProcessingException e) {
             e.printStackTrace();
         }
 
@@ -146,13 +140,32 @@ public class Database {
             note = notesFromRS;
 
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (JsonProcessingException e) {
+        } catch (SQLException | JsonProcessingException e) {
             e.printStackTrace();
         }
 
         return note;
     }
 
+    public boolean setImageUrl(Attachment attachment){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Attachment (userId, fileUrl, timestamp, header) VALUES(?, ?, ?, ?)");
+
+            stmt.setInt(1, 1);
+            stmt.setString(2, attachment.getFileUrl());
+            stmt.setTimestamp(3, attachment.getTimestamp());
+            stmt.setString(4, attachment.getHeader());
+
+
+
+            stmt.executeUpdate();
+            return true;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 }
