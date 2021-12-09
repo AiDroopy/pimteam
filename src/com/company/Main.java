@@ -98,7 +98,6 @@ public class Main {
                 boolean test = db.setImageUrl(attachment);
                 System.out.println(test); // debug statement true or false
                 res.send("OK");
-
             }
 
 
@@ -123,6 +122,11 @@ public class Main {
             //FileUtil.streamToFile(file.getContent(), "src/files/1/" + file.getFilename());
         });
 
+        //Get all headers from images
+        app.get("/api/images", (req, res) -> {
+            List<Attachment> images = db.getImageHeaders();
+            res.json(images);
+        });
 
 
 

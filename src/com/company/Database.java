@@ -173,4 +173,27 @@ public class Database {
 
         return false;
     }
+
+
+
+
+    public List<Attachment> getImageHeaders(){
+        List<Attachment> imageHeaders = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Attachment");
+            ResultSet rs = stmt.executeQuery();
+
+            Attachment[] imageHeadersFromRs = Utils.resultSetToObject(rs, Attachment[].class);
+            imageHeaders = List.of(imageHeadersFromRs);
+
+
+        } catch (SQLException | JsonProcessingException e) {
+            e.printStackTrace();
+
+        }
+
+        return imageHeaders;
+    }
+
+
 }
