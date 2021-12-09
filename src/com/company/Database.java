@@ -108,6 +108,11 @@ public class Database {
         return false;
     }
 
+    /**
+     *
+     * @param header
+     * @return
+     */
     // SELECT * FROM Notes WHERE header LIKE '%irs%'
     public Note[] getNoteByHeader(String header){
         Note[] note = null;
