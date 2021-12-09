@@ -154,7 +154,7 @@ public class Database {
 
     public boolean setImageUrl(Attachment attachment){
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Attachment (userId, fileUrl, timestamp, header) VALUES(?, ?, ?, ?)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Image (userId, fileUrl, timestamp, header) VALUES(?, ?, ?, ?)");
 
             stmt.setInt(1, 1);
             stmt.setString(2, attachment.getFileUrl());
@@ -174,13 +174,10 @@ public class Database {
         return false;
     }
 
-
-
-
     public List<Attachment> getImageHeaders(){
         List<Attachment> imageHeaders = null;
         try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Attachment");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Image");
             ResultSet rs = stmt.executeQuery();
 
             Attachment[] imageHeadersFromRs = Utils.resultSetToObject(rs, Attachment[].class);
@@ -193,6 +190,27 @@ public class Database {
         }
 
         return imageHeaders;
+    }
+
+    public Attachment getImageHeaderById(int id){
+        Attachment attachment = null;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Image WHERE id=?");
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            Attachment[] attachmentFromRS = Utils.resultSetToObject(rs, Attachment[].class);
+
+            attachment = attachmentFromRS[0];
+
+
+        } catch (SQLException | JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return attachment;
     }
 
 

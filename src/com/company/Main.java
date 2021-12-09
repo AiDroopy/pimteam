@@ -128,6 +128,12 @@ public class Main {
             res.json(images);
         });
 
+        // Get image by id
+        app.get("api/images/:id", (req, res) ->{
+            int id = Integer.parseInt(req.params("id"));
+            Attachment attachment = db.getImageHeaderById(id);
+            res.json(attachment);
+        });
 
 
         // Server loop
