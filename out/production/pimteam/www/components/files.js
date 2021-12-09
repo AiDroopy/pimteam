@@ -20,7 +20,7 @@ async function uploadFile(e) {
     }
 
     // upload selected files to server
-    let uploadResult = await fetch('/api/documents', {
+    let uploadResult = await fetch('/api/files', {
         method: 'POST',
         body: formData
     });
