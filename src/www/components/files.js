@@ -10,7 +10,7 @@ function renderAddFiles(){
 }
 
 async function uploadFile(e) {
-    e.preventDefault
+    e.preventDefault()
 
     let files = document.querySelector('input[type=file]').files;
     let formData = new FormData();
