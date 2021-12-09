@@ -27,11 +27,9 @@ public class Database {
             notes = List.of(notesFromRS);
 
 
-        } catch (SQLException e) {
+        } catch (SQLException | JsonProcessingException e) {
             e.printStackTrace();
 
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
         }
 
         return notes;
@@ -51,9 +49,7 @@ public class Database {
             note = noteFromRS[0];
 
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (JsonProcessingException e) {
+        } catch (SQLException | JsonProcessingException e) {
             e.printStackTrace();
         }
 
@@ -108,6 +104,11 @@ public class Database {
         return false;
     }
 
+    /**
+     *
+     * @param header
+     * @return
+     */
     // SELECT * FROM Notes WHERE header LIKE '%irs%'
     public Note[] getNoteByHeader(String header){
         Note[] note = null;
@@ -123,9 +124,7 @@ public class Database {
             note = headerFromRS;
 
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (JsonProcessingException e) {
+        } catch (SQLException | JsonProcessingException e) {
             e.printStackTrace();
         }
 
@@ -146,13 +145,132 @@ public class Database {
             note = notesFromRS;
 
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (JsonProcessingException e) {
+        } catch (SQLException | JsonProcessingException e) {
             e.printStackTrace();
         }
 
         return note;
     }
 
+    public boolean setImageUrl(Attachment attachment){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Image (userId, fileUrl, timestamp, header) VALUES(?, ?, ?, ?)");
+
+            stmt.setInt(1, 1);
+            stmt.setString(2, attachment.getFileUrl());
+            stmt.setTimestamp(3, attachment.getTimestamp());
+            stmt.setString(4, attachment.getHeader());
+
+
+
+            stmt.executeUpdate();
+            return true;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public List<Attachment> getImageHeaders(){
+        List<Attachment> imageHeaders = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Image");
+            ResultSet rs = stmt.executeQuery();
+
+            Attachment[] imageHeadersFromRs = Utils.resultSetToObject(rs, Attachment[].class);
+            imageHeaders = List.of(imageHeadersFromRs);
+
+
+        } catch (SQLException | JsonProcessingException e) {
+            e.printStackTrace();
+
+        }
+
+        return imageHeaders;
+    }
+
+    public Attachment getImageHeaderById(int id){
+        Attachment attachment = null;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Image WHERE id=?");
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            Attachment[] attachmentFromRS = Utils.resultSetToObject(rs, Attachment[].class);
+
+            attachment = attachmentFromRS[0];
+
+
+        } catch (SQLException | JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return attachment;
+    }
+
+    public boolean setFilesUrl(Attachment attachment){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Files (userId, fileUrl, timestamp, header) VALUES(?, ?, ?, ?)");
+
+            stmt.setInt(1, 1);
+            stmt.setString(2, attachment.getFileUrl());
+            stmt.setTimestamp(3, attachment.getTimestamp());
+            stmt.setString(4, attachment.getHeader());
+
+
+
+            stmt.executeUpdate();
+            return true;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public List<Attachment> getFileHeaders(){
+        List<Attachment> attachment = null;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Files");
+            ResultSet rs = stmt.executeQuery();
+
+            Attachment[] filesHeadersFromRs = Utils.resultSetToObject(rs, Attachment[].class);
+            attachment = List.of(filesHeadersFromRs);
+
+
+        } catch (SQLException | JsonProcessingException e) {
+            e.printStackTrace();
+
+        }
+
+        return attachment;
+    }
+
+    public Attachment getFileHeaderById(int id){
+        Attachment attachment = null;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Files WHERE id=?");
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            Attachment[] attachmentFromRS = Utils.resultSetToObject(rs, Attachment[].class);
+
+            attachment = attachmentFromRS[0];
+
+
+        } catch (SQLException | JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return attachment;
+    }
 }

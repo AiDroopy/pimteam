@@ -78,15 +78,26 @@ public class Main {
 
         });
 
+        // upload images
         app.post("/api/images", (req, res) -> {
             //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
-            UploadedFile file = req.formDataFile("files");          // get a single file
+            UploadedFile file = req.formDataFile("files"); // get a single file
+            String header = req.formData("header"); // created header key-value
+
 
             // with FileOutputStream
             Path path = Paths.get("src/www/images/1/" + file.getFilename());
             System.out.println(path.toString());
+
             try (FileOutputStream os = new FileOutputStream(path.toString())) {
                 os.write(file.getContent().readAllBytes()); // write to file
+
+
+                Attachment attachment = new Attachment(path.toString(), 1, header); // created attachment object
+
+                boolean test = db.setImageUrl(attachment);
+                System.out.println(test); // debug statement true or false
+                res.send("OK");
             }
 
 
@@ -94,6 +105,7 @@ public class Main {
             // FileUtil.streamToFile(file.getContent(), "src/images/" + file.getFilename());
         });
 
+        //upload documents
         app.post("/api/documents", (req, res) -> {
             //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
             UploadedFile file = req.formDataFile("files");          // get a single file
@@ -105,8 +117,22 @@ public class Main {
                 os.write(file.getContent().readAllBytes()); // write to file
             }
 
+
             // with FileUtil (creates dirs if necessary)
             //FileUtil.streamToFile(file.getContent(), "src/files/1/" + file.getFilename());
+        });
+
+        //Get all headers from images
+        app.get("/api/images", (req, res) -> {
+            List<Attachment> images = db.getImageHeaders();
+            res.json(images);
+        });
+
+        // Get image by id
+        app.get("api/images/:id", (req, res) ->{
+            int id = Integer.parseInt(req.params("id"));
+            Attachment attachment = db.getImageHeaderById(id);
+            res.json(attachment);
         });
 
 
