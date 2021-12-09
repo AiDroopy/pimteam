@@ -14,7 +14,7 @@ function changePage() {
     switch(page){
         
         case "addFile":
-            document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="addFile(event)"></form>`;
+            document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="uploadFile(event)"></form>`;
             document.querySelector('.addForm').innerHTML = renderAddFiles();
         break;
 
