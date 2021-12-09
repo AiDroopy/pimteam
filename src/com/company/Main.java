@@ -78,6 +78,7 @@ public class Main {
 
         });
 
+        // upload images
         app.post("/api/images", (req, res) -> {
             //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
             UploadedFile file = req.formDataFile("files"); // get a single file
@@ -105,6 +106,7 @@ public class Main {
             // FileUtil.streamToFile(file.getContent(), "src/images/" + file.getFilename());
         });
 
+        //upload documents
         app.post("/api/documents", (req, res) -> {
             //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
             UploadedFile file = req.formDataFile("files");          // get a single file
@@ -116,9 +118,12 @@ public class Main {
                 os.write(file.getContent().readAllBytes()); // write to file
             }
 
+
             // with FileUtil (creates dirs if necessary)
             //FileUtil.streamToFile(file.getContent(), "src/files/1/" + file.getFilename());
         });
+
+
 
 
         // Server loop
