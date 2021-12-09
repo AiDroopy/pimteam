@@ -122,6 +122,7 @@ public class Main {
         app.post("/api/files", (req, res) -> {
             //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
             UploadedFile file = req.formDataFile("files");          // get a single file
+            String header = req.formData("header"); // created header key-value
 
             // with FileOutputStream
             Path path = Paths.get("src/www/documents/1/" + file.getFilename());
@@ -131,6 +132,11 @@ public class Main {
             }
 
 
+            Attachment attachment = new Attachment(path.toString(), 1, header); // created attachment object
+
+            boolean test = db.setFilesUrl(attachment);
+            System.out.println(test); // debug statement true or false
+            res.send("OK");
             // with FileUtil (creates dirs if necessary)
             //FileUtil.streamToFile(file.getContent(), "src/files/1/" + file.getFilename());
         });
