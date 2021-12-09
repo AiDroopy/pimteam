@@ -35,21 +35,21 @@ public class Main {
 
         });
 
-        // Create a note
+        // Create a Note
         app.post("api/notes", (req, res) -> {
             Note note = (Note) req.body(Note.class);
             db.createNote(note);
             res.send(note.getHeader() + " created");
         });
 
-        // Update a note
+        // Update a Note
         app.put("/api/notes/:id", (req, res) -> {
             Note note = (Note) req.body(Note.class);
             db.updateNote(note);
             res.send(note.getHeader() + " updated!");
         });
 
-        // Delete note
+        // Delete Note
         app.delete("api/notes/:id", (req, res) -> {
             Note note = (Note) req.body(Note.class);
 
@@ -61,8 +61,7 @@ public class Main {
             else res.send("Something went really wrong!");
         });
 
-        // Search note by header
-
+        // Search Note by header
         app.get("api/notes/search/header/:header", (req, res) ->{
             String header = (String) (req.params("header"));
             Note note[] = db.getNoteByHeader(header);
@@ -70,7 +69,7 @@ public class Main {
 
         });
 
-        // Search by bodyText
+        // Search Note by bodyText
         app.get("api/notes/search/notes/:notes", (req, res) ->{
             String notes = (String) (req.params("notes"));
             Note note[] = db.getNoteByNotes(notes);
@@ -78,7 +77,7 @@ public class Main {
 
         });
 
-        // upload images
+        // upload Images
         app.post("/api/images", (req, res) -> {
             //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
             UploadedFile file = req.formDataFile("files"); // get a single file
@@ -105,8 +104,22 @@ public class Main {
             // FileUtil.streamToFile(file.getContent(), "src/images/" + file.getFilename());
         });
 
-        //upload documents
-        app.post("/api/documents", (req, res) -> {
+        //Get all Images
+        app.get("/api/images", (req, res) -> {
+            List<Attachment> images = db.getImageHeaders();
+            res.json(images);
+        });
+
+        // Get Image by id
+        app.get("api/images/:id", (req, res) ->{
+            int id = Integer.parseInt(req.params("id"));
+            Attachment attachment = db.getImageHeaderById(id);
+            res.json(attachment);
+        });
+
+
+        //upload Files
+        app.post("/api/files", (req, res) -> {
             //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
             UploadedFile file = req.formDataFile("files");          // get a single file
 
@@ -122,16 +135,16 @@ public class Main {
             //FileUtil.streamToFile(file.getContent(), "src/files/1/" + file.getFilename());
         });
 
-        //Get all headers from images
-        app.get("/api/images", (req, res) -> {
-            List<Attachment> images = db.getImageHeaders();
-            res.json(images);
+        // Get all Files
+        app.get("/api/files", (req, res) -> {
+            List<Attachment> files = db.getFileHeaders();
+            res.json(files);
         });
 
-        // Get image by id
-        app.get("api/images/:id", (req, res) ->{
+        // Get File by id
+        app.get("api/files/:id", (req, res) ->{
             int id = Integer.parseInt(req.params("id"));
-            Attachment attachment = db.getImageHeaderById(id);
+            Attachment attachment = db.getFileHeaderById(id);
             res.json(attachment);
         });
 

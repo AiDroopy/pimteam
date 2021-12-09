@@ -152,6 +152,8 @@ public class Database {
         return note;
     }
 
+
+    //images
     public boolean setImageUrl(Attachment attachment){
         try {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Image (userId, fileUrl, timestamp, header) VALUES(?, ?, ?, ?)");
@@ -213,6 +215,8 @@ public class Database {
         return attachment;
     }
 
+
+    //files
     public boolean setFilesUrl(Attachment attachment){
         try {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Files (userId, fileUrl, timestamp, header) VALUES(?, ?, ?, ?)");
