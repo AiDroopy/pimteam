@@ -52,6 +52,7 @@ function renderFiles() {
         let fileLi = `
             <div id="listTxt">
                 <a href="${file.fileUrl}"><h3>${file.header}<i class="fas fa-file-archive"></i></h3></a>
+                <br>
             </div>
         `;
 

@@ -89,7 +89,10 @@ h3,
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: space-around;
 }
 .note-container #listTxt,
 .file-container #listTxt{
