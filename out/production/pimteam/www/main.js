@@ -38,12 +38,12 @@ function changePage() {
         break;
 
         case "images":
-            document.querySelector('main').innerHTML = `<div class='file-container'></div>`;
-            document.querySelector('.file-container').innerHTML = getImages();
+            document.querySelector('main').innerHTML = `<div class='image-container'></div>`;
+            document.querySelector('.image-container').innerHTML = getImages();
         break;
 
         case "addImage":
-            document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="addImage(event)"></form>`;
+            document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="uploadImage(event)"></form>`;
             document.querySelector('.addForm').innerHTML = renderAddImage();
         break;
 

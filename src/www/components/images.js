@@ -10,15 +10,15 @@ function renderAddImage(){
 async function uploadImage(e) {
     e.preventDefault()
 
-    let images = document.querySelector('input[type=file]').files;
+    let files = document.querySelector('input[type=file]').files;
     let formData = new FormData();
 
     let headerInput = document.querySelector('#header');
 
     console.log(headerInput.value);
 
-    for(let image of images) {
-        formData.append('image', image, image.name);
+    for(let file of files) {
+        formData.append('image', file, file.name);
         formData.append('header', headerInput.value);
     }
 
@@ -32,7 +32,7 @@ async function uploadImage(e) {
 
 // get images and render as list on page
 async function getImages(){
-    let result = await fetch('api/images');
+    let result = await fetch('/api/images');
     images = await result.json();
 
     console.log(images);

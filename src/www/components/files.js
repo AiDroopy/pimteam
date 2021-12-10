@@ -32,7 +32,7 @@ async function uploadFile(e) {
 
 }
 async function getFiles(){
-    let result = await fetch('api/files');
+    let result = await fetch('/api/files');
     files = await result.json();
 
     console.log(files);

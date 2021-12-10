@@ -84,7 +84,8 @@ h2{
     justify-content: space-around;
 }
 .note-container,
-.file-container{
+.file-container,
+.image-container{
     width: 25%;
     padding: 5%;
     margin: auto;
@@ -144,5 +145,9 @@ textarea {
     justify-content: space-around;
 }
 #addBtn{
+    width: 20%;
+}
+
+img {
     width: 20%;
 }

@@ -80,7 +80,7 @@ public class Main {
         // upload Images
         app.post("/api/images", (req, res) -> {
             //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
-            UploadedFile file = req.formDataFile("files"); // get a single file
+            UploadedFile file = req.formDataFile("image"); // get a single file
             String header = req.formData("header"); // created header key-value
 
 
