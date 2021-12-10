@@ -30,23 +30,4 @@ async function uploadFile(e) {
         body: formData
     });
 
-    // // get the uploaded image url from response
-    // let documentUrl = await uploadResult.text();
-    // let headerInput = document.querySelector('#header');
-
-    // // create a post object containing values from inputs
-    // // and the uploaded image url
-    // let post = {
-    //     header: headerInput.value,
-    //     documentUrl: documentUrl
-    // }
-
-    // let result = await fetch("/api/files", {
-    //     method: "POST",
-    //     body: JSON.stringify(post)
-    // });
-
-    //     uploads.push(post)
-
-    // console.log(await result.text())
 }
