@@ -6,15 +6,17 @@
 
 a {
     text-decoration: none;
-    width: 15%;
+    width: 20%;
+    margin: auto;
 }
 
 h1 {
     text-align: left;
-    width: 100%;
-    padding: 10%;
+    width: 20%;
+    padding: 1%; 
     font-family: 'Quicksand', sans-serif;
     color: #94524A;
+    display: inline-block;
 }
 header {
     height: 15vh;
@@ -52,6 +54,8 @@ h3,
 #hoover .navTxt,
 #hoover .formTxt{
     transition: opacity 0.9s ease-in-out;
+    display: inline-block;
+    margin: auto;
 }
 #hoover .navTxt,
 #hoover .formTxt{
@@ -80,24 +84,30 @@ h3,
 }
 .note-container,
 .file-container{
-    size: 50%;
-    padding: 15%;
+    width: 25%;
+    padding: 5%;
     margin: auto;
-    /* text-align: center; */
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    overflow-y: scroll;
 }
-.note-container #listTxt{
+.note-container #listTxt,
+.file-container #listTxt{
     color: #94524A;
     font-family: 'Quicksand', sans-serif;
     text-align: left;
     font-size: 18px;
+    border: 2px solid #CADBC0;
+    border-radius: 5px;
+
 }
-#listTxt h2{
-    color: #94524A;
-    font-family: 'Quicksand', sans-serif;
+.file-container .i{
+    text-align: right;
+    float: right;
+}
+#listTxt h3{
+    float: right;
+    margin-right: 10px;
+    text-align: left;
 }
 
 .form-container i{
