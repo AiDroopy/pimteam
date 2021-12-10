@@ -39,7 +39,8 @@ i,
 .navTxt,
 .formTxt,
 h3,
-#addBtn{
+#addBtn,
+h2{
     color: #94524A;
     font-family: 'Quicksand', sans-serif;
 }
@@ -84,15 +85,11 @@ h3,
 }
 .note-container,
 .file-container{
-    width: 50%;
-    padding: 10%;
+    width: 25%;
+    padding: 5%;
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    align-content: space-around;
 }
 .note-container #listTxt,
 .file-container #listTxt{
@@ -100,12 +97,18 @@ h3,
     font-family: 'Quicksand', sans-serif;
     text-align: left;
     font-size: 18px;
-    border: #CADBC0;
+    border: 2px solid #CADBC0;
+    border-radius: 5px;
 
 }
-#listTxt h2{
-    color: #94524A;
-    font-family: 'Quicksand', sans-serif;
+.file-container .i{
+    text-align: right;
+    float: right;
+}
+#listTxt h3 {
+    float: right;
+    margin-right: 10px;
+    text-align: left;
 }
 
 .form-container i{

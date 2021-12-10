@@ -38,7 +38,8 @@ function changePage() {
         break;
 
         case "images":
-
+            document.querySelector('main').innerHTML = `<div class='file-container'></div>`;
+            document.querySelector('.file-container').innerHTML = getImages();
         break;
 
         case "addImage":

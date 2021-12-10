@@ -39,7 +39,8 @@ i,
 .navTxt,
 .formTxt,
 h3,
-#addBtn{
+#addBtn,
+h2{
     color: #94524A;
     font-family: 'Quicksand', sans-serif;
 }
@@ -83,7 +84,8 @@ h3,
     justify-content: space-around;
 }
 .note-container,
-.file-container{
+.file-container,
+.image-container{
     width: 25%;
     padding: 5%;
     margin: auto;
@@ -104,7 +106,7 @@ h3,
     text-align: right;
     float: right;
 }
-#listTxt h3{
+#listTxt h3 {
     float: right;
     margin-right: 10px;
     text-align: left;
@@ -143,5 +145,9 @@ textarea {
     justify-content: space-around;
 }
 #addBtn{
+    width: 20%;
+}
+
+img {
     width: 20%;
 }

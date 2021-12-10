@@ -159,7 +159,7 @@ public class Database {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Image (userId, fileUrl, timestamp, header) VALUES(?, ?, ?, ?)");
 
             stmt.setInt(1, 1);
-            stmt.setString(2, attachment.getFileUrl());
+            stmt.setString(2, attachment.getFileUrl().substring(7));
             stmt.setTimestamp(3, attachment.getTimestamp());
             stmt.setString(4, attachment.getHeader());
 
