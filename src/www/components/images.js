@@ -7,55 +7,58 @@ function renderAddImage(){
     `
 }
 
-async function uploadFile(e) {
+async function uploadImage(e) {
     e.preventDefault()
 
-    let files = document.querySelector('input[type=file]').files;
+    let images = document.querySelector('input[type=file]').files;
     let formData = new FormData();
 
     let headerInput = document.querySelector('#header');
 
     console.log(headerInput.value);
 
-    for(let file of files) {
-        formData.append('files', file, file.name);
+    for(let image of images) {
+        formData.append('image', image, image.name);
         formData.append('header', headerInput.value);
     }
 
     // upload selected files to server
-    let uploadResult = await fetch('/api/files', {
+    let uploadResult = await fetch('/api/images', {
         method: 'POST',
         body: formData
     });
 
 }
-async function getFiles(){
-    let result = await fetch('api/files');
-    files = await result.json();
 
-    console.log(files);
+// get images and render as list on page
+async function getImages(){
+    let result = await fetch('api/images');
+    images = await result.json();
 
-    renderFiles();
+    console.log(images);
+
+    renderImages();
 }
 
-function renderFiles() {
-    let fileList = document.querySelector(".file-container");
+//render images as list
+function renderImages() {
+    let imageList = document.querySelector(".image-container");
 
     // clear list before update
-    fileList.innerHTML = "";
+    imageList.innerHTML = "";
 
-    for(let file of files) {
-        let date = new Date(file.timestamp).toLocaleString();
+    for(let image of images) {
+        let date = new Date(image.timestamp).toLocaleString();
 
-        let fileLi = `
+        let imgLi = `
             <div id="listTxt">
-                <a href="${file.fileUrl}"><i class="fas fa-file-archive"></i>   <h3>${file.header}</h3></a>
+                <img src="${image.fileUrl}" ><h3>${image.header}</h3></a>
                 <br>
                 <br>
             </div>
         `;
 
-        fileList.innerHTML += fileLi;
+        imageList.innerHTML += imgLi;
     }
 
 }
