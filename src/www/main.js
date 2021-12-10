@@ -13,6 +13,11 @@ function changePage() {
 
     switch(page){
         
+        case "files":
+            document.querySelector('main').innerHTML = `<div class='file-container'></div>`;
+            document.querySelector('.file-container').innerHTML = getFiles();
+        break;
+
         case "addFile":
             document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="uploadFile(event)"></form>`;
             document.querySelector('.addForm').innerHTML = renderAddFiles();

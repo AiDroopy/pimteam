@@ -35,7 +35,7 @@ async function createNote(e) {
     console.log(await result.text())
 }
 
-//get notes from database using our Exoress-server routes
+//get notes from database using our Express-server routes
 async function getNotes(){
     let result = await fetch('api/notes');
     notes = await result.json();
