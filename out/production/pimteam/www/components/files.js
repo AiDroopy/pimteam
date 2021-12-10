@@ -3,7 +3,7 @@ let uploads = [];
 function renderAddFiles(){
     return `
     <h3>Upload file</h3>
-                    <!-- <input id="header" required type="text" placeholder="header"> -->
+                    <input id="header" required type="text" placeholder="header">
                     <input type="file" placeholder="select file">
                     <button id="addBtn" type="submit">Add file</button>
     `
@@ -36,12 +36,12 @@ async function uploadFile(e) {
     //     documentUrl: documentUrl
     // }
 
-    // let result = await fetch("/rest/posts", {
+    // let result = await fetch("/api/files", {
     //     method: "POST",
     //     body: JSON.stringify(post)
     // });
 
-    // posts.push(post)
+    //     uploads.push(post)
 
     // console.log(await result.text())
 }
