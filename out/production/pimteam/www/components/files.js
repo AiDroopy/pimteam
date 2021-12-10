@@ -15,8 +15,13 @@ async function uploadFile(e) {
     let files = document.querySelector('input[type=file]').files;
     let formData = new FormData();
 
+    let headerInput = document.querySelector('#header');
+
+    console.log(headerInput.value);
+
     for(let file of files) {
         formData.append('files', file, file.name);
+        formData.append('header', headerInput.value);
     }
 
     // upload selected files to server
@@ -25,23 +30,33 @@ async function uploadFile(e) {
         body: formData
     });
 
-    // // get the uploaded image url from response
-    // let documentUrl = await uploadResult.text();
-    // let headerInput = document.querySelector('#header');
+}
+async function getFiles(){
+    let result = await fetch('api/files');
+    files = await result.json();
 
-    // // create a post object containing values from inputs
-    // // and the uploaded image url
-    // let post = {
-    //     header: headerInput.value,
-    //     documentUrl: documentUrl
-    // }
+    console.log(files);
 
-    // let result = await fetch("/api/files", {
-    //     method: "POST",
-    //     body: JSON.stringify(post)
-    // });
+    renderFiles();
+}
 
-    //     uploads.push(post)
+function renderFiles() {
+    let fileList = document.querySelector(".file-container");
 
-    // console.log(await result.text())
+    // clear list before update
+    fileList.innerHTML = "";
+
+    for(let file of files) {
+        let date = new Date(file.timestamp).toLocaleString();
+
+        let fileLi = `
+            <div id="listTxt">
+                <h3>${file.header} </h3>
+                <a href="${file.fileUrl}"><i class="fas fa-file-archive"></i></a>
+    </div>
+        `;
+
+        fileList.innerHTML += fileLi;
+    }
+
 }

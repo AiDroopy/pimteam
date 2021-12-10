@@ -31,3 +31,32 @@ async function uploadFile(e) {
     });
 
 }
+async function getFiles(){
+    let result = await fetch('api/files');
+    files = await result.json();
+
+    console.log(files);
+
+    renderFiles();
+}
+
+function renderFiles() {
+    let fileList = document.querySelector(".file-container");
+
+    // clear list before update
+    fileList.innerHTML = "";
+
+    for(let file of files) {
+        let date = new Date(file.timestamp).toLocaleString();
+
+        let fileLi = `
+            <div id="listTxt">
+                <h3>${file.header} </h3>
+                <a href="${file.fileUrl}"><i class="fas fa-file-archive"></i></a>
+            </div>
+        `;
+
+        fileList.innerHTML += fileLi;
+    }
+
+}
