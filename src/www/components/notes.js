@@ -58,6 +58,7 @@ function renderNotes(){
                 <a href="#goNote"><h2>${note.header}</h2></a>  
                 <h3>${note.notes}</h3> 
                 <br>
+                <button onclick="deleteNote()"><i class="fas fa-trash-alt"></i></button>
             </div>
         `;
 

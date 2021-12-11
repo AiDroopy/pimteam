@@ -54,6 +54,7 @@ function renderImages() {
             <div id="listTxt">
                 <img src="${image.fileUrl}" ><h3>${image.header}</h3></a>
                 <br>
+                <button onclick="deleteImage()"><i class="fas fa-trash-alt"></i></button>
                 <br>
             </div>
         `;

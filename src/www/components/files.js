@@ -29,8 +29,8 @@ async function uploadFile(e) {
         method: 'POST',
         body: formData
     });
-
 }
+
 async function getFiles(){
     let result = await fetch('/api/files');
     files = await result.json();
@@ -53,6 +53,7 @@ function renderFiles() {
             <div id="listTxt">
                 <a href="${file.fileUrl}"><i class="fas fa-file-archive"></i>   <h3>${file.header}</h3></a>
                 <br>
+                <button onclick="deleteFile()"><i class="fas fa-trash-alt"></i></button>
                 <br>
             </div>
         `;
