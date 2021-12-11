@@ -44,7 +44,7 @@ function renderFiles() {
     let fileList = document.querySelector(".file-container");
 
     // clear list before update
-    fileList.innerHTML = "";
+    fileList.innerHTML = "<a id='addBtn' href=#addFile><i class='fas fa-plus'></i> Add file</a>";
 
     for(let file of files) {
         let date = new Date(file.timestamp).toLocaleString();

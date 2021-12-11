@@ -45,7 +45,7 @@ function renderImages() {
     let imageList = document.querySelector(".image-container");
 
     // clear list before update
-    imageList.innerHTML = "";
+    imageList.innerHTML = "<a id='addBtn' href=#addImage><i class='fas fa-plus'></i> Add image</a>";
 
     for(let image of images) {
         let date = new Date(image.timestamp).toLocaleString();
