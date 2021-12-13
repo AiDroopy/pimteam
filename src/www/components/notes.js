@@ -45,6 +45,27 @@ async function getNotes(){
     renderNotes();
 }
 
+// Get note by ID
+/*
+async function getNoteById(id){
+    let result = await fetch('api/notes/' + id);
+    method: 
+    note = await result.json();
+
+    console.log(note);
+
+    renderNote();
+}
+*/
+async function deleteNote(id){
+       
+        let result = await fetch('api/notes/' + id);
+        method: "GET"
+        let note = await result.json();
+
+    console.log(note)
+}
+
 // render all notes as a list of notes
 function renderNotes(){
     let noteList = document.querySelector('.note-container');
@@ -55,10 +76,10 @@ function renderNotes(){
 
         let noteLi = `
             <div id="listTxt">
-                <a href="#goNote"><h2>${note.header}</h2></a>  
+                <a href="#notes/${note.id}"><h2>${note.header}</h2></a>  
                 <h3>${note.notes}</h3> 
                 <br>
-                <button onclick="deleteNote()"><i class="fas fa-trash-alt"></i></button>
+                <button onclick="deleteNote(${note.id})"><i class="fas fa-trash-alt"></i></button>
             </div>
         `;
 

@@ -29,8 +29,8 @@ async function uploadFile(e) {
         method: 'POST',
         body: formData
     });
-
 }
+
 async function getFiles(){
     let result = await fetch('/api/files');
     files = await result.json();
@@ -44,7 +44,7 @@ function renderFiles() {
     let fileList = document.querySelector(".file-container");
 
     // clear list before update
-    fileList.innerHTML = "";
+    fileList.innerHTML = "<a id='addBtn' href=#addFile><i class='fas fa-plus'></i> Add file</a>";
 
     for(let file of files) {
         let date = new Date(file.timestamp).toLocaleString();
@@ -53,6 +53,7 @@ function renderFiles() {
             <div id="listTxt">
                 <a href="${file.fileUrl}"><i class="fas fa-file-archive"></i>   <h3>${file.header}</h3></a>
                 <br>
+                <button onclick="deleteFile()"><i class="fas fa-trash-alt"></i></button>
                 <br>
             </div>
         `;

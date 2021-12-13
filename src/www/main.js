@@ -47,6 +47,14 @@ function changePage() {
             document.querySelector('.addForm').innerHTML = renderAddImage();
         break;
 
+        // "View / edit a note by id"
+        case "goNote":
+           
+            document.querySelector('main').innerHTML = `<div class='note-container'></div>`;
+            document.querySelector('.note-container').innerHTML = getNotesById();
+            console.log("goNote");
+        break;
+
         default: 
 
         // empty HTML for main and add div form-container

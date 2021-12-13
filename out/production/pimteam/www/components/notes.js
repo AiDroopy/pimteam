@@ -1,7 +1,7 @@
 
 // Create an array as a placeholder for our notes, both to render them and to push new items into.
 let notes = [];
-
+let theNote = null;
 //render html for adding notes page
 function renderAddNotes(){
     return ` <h3>Create note</h3>
@@ -45,6 +45,11 @@ async function getNotes(){
     renderNotes();
 }
 
+// Get note by ID
+async function getNoteById(){
+    // Senare
+}
+
 // render all notes as a list of notes
 function renderNotes(){
     let noteList = document.querySelector('.note-container');
@@ -55,9 +60,10 @@ function renderNotes(){
 
         let noteLi = `
             <div id="listTxt">
-                <a href="#goNote"><h2>${note.header}</h2></a>  
+                <a href="#goNote/${note.id}"><h2>${note.header}</h2></a>  
                 <h3>${note.notes}</h3> 
                 <br>
+                <button onclick="deleteNote()"><i class="fas fa-trash-alt"></i></button>
             </div>
         `;
 
