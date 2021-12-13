@@ -215,6 +215,18 @@ public class Database {
         return attachment;
     }
 
+    public boolean deleteImage(Attachment attachment) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Image WHERE id=?");
+            stmt.setInt(1, attachment.getId());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
     //files
     public boolean setFilesUrl(Attachment attachment){

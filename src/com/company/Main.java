@@ -78,6 +78,9 @@ public class Main {
 
         });
 
+
+
+
         // upload Images
         app.post("/api/images", (req, res) -> {
             //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
@@ -117,6 +120,28 @@ public class Main {
             Attachment attachment = db.getImageHeaderById(id);
             res.json(attachment);
         });
+
+        app.delete("api/images/:id", (req, res) -> {
+            int id = Integer.parseInt(req.params("id"));
+            Attachment attachment = db.getImageHeaderById(id);
+
+            String imageUrl =  "./src/www" + attachment.getFileUrl();
+            Path filePath = Paths.get(imageUrl);
+
+
+            System.out.println(filePath);
+            Boolean test = db.deleteImage(attachment);
+            //System.out.print(test);
+            Files.deleteIfExists(filePath);
+
+            //System.out.println(attachment.toString());
+
+
+
+            res.json(filePath);
+
+        });
+
 
 
         //upload Files
