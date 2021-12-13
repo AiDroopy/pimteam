@@ -4,6 +4,7 @@ import express.Express;
 import io.javalin.http.UploadedFile;
 
 import java.io.FileOutputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -154,6 +155,39 @@ public class Main {
             res.json(attachment);
         });
 
+        // Delete file   /
+        app.delete("api/files/:id", (req, res) -> {
+            int id = Integer.parseInt(req.params("id"));
+            Attachment attachment = db.getFileHeaderById(id);
+
+            String fileUrl = "./src/www" + attachment.getFileUrl();
+            Path filePath = Paths.get(fileUrl);
+
+
+            System.out.println(filePath);
+
+            Files.deleteIfExists(filePath);
+
+            //System.out.println(attachment.toString());
+
+
+
+            res.json(filePath);
+
+
+            //Files.deleteIfExists(Paths.get(file.getFileUrl())); //https://www.geeksforgeeks.org/delete-file-using-java/    // Path path = Paths.get("src/www/documents/1/" + file.getFilename()); --> how delete file from path
+
+            // FileUtil.streamToFile(file.getContent(), "src/files/1/" + file.getFilename());
+            // os.write(file.getContent().readAllBytes()); // write to file
+            /*
+            boolean deleted = db.deleteFile(file);
+            if (deleted == true){
+                res.send("Note deleted!");
+            }
+            else res.send("Something went really wrong!");
+
+             */
+        });
 
         // Server loop
         app.listen(3000);
