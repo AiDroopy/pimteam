@@ -276,4 +276,16 @@ public class Database {
         return attachment;
     }
 
+    public boolean deleteFile(Attachment attachment) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Files WHERE id=?");
+            stmt.setInt(1, attachment.getId());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

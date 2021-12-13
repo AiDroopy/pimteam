@@ -165,7 +165,8 @@ public class Main {
 
 
             System.out.println(filePath);
-
+            Boolean test = db.deleteFile(attachment);
+            //System.out.print(test);
             Files.deleteIfExists(filePath);
 
             //System.out.println(attachment.toString());
@@ -174,19 +175,6 @@ public class Main {
 
             res.json(filePath);
 
-
-            //Files.deleteIfExists(Paths.get(file.getFileUrl())); //https://www.geeksforgeeks.org/delete-file-using-java/    // Path path = Paths.get("src/www/documents/1/" + file.getFilename()); --> how delete file from path
-
-            // FileUtil.streamToFile(file.getContent(), "src/files/1/" + file.getFilename());
-            // os.write(file.getContent().readAllBytes()); // write to file
-            /*
-            boolean deleted = db.deleteFile(file);
-            if (deleted == true){
-                res.send("Note deleted!");
-            }
-            else res.send("Something went really wrong!");
-
-             */
         });
 
         // Server loop
