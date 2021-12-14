@@ -13,21 +13,23 @@ function changePage() {
     let noteId = window.sessionStorage.getItem('editNoteId');
 
     switch(page){
-        
-        case "files":
-            document.querySelector('main').innerHTML = `<div class='file-container'></div>`;
-            document.querySelector('.file-container').innerHTML = getFiles();
-        break;
-
-        case "addFile":
-            document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="uploadFile(event)"></form>`;
-            document.querySelector('.addForm').innerHTML = renderAddFiles();
-        break;
 
         case "notes":
 
             document.querySelector('main').innerHTML = `<div class='note-container'></div>`;
             document.querySelector('.note-container').innerHTML = getNotes();
+
+        break;
+
+        case "editNotes/" + noteId:
+           
+            if(noteId !== undefined){  
+                goNote(noteId);
+                
+            } else {
+                location.hash = "";
+                
+            }
 
         break;
 
@@ -47,20 +49,17 @@ function changePage() {
             document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="uploadImage(event)"></form>`;
             document.querySelector('.addForm').innerHTML = renderAddImage();
         break;
-
-        // "View / edit a note by id"
-        case "editNotes/" + noteId:
-           
-            if(noteId !== undefined){  
-                goNote(noteId);
-                
-            } else {
-                location.hash = "";
-                
-            }
-
+        
+        case "files":
+            document.querySelector('main').innerHTML = `<div class='file-container'></div>`;
+            document.querySelector('.file-container').innerHTML = getFiles();
         break;
 
+        case "addFile":
+            document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="uploadFile(event)"></form>`;
+            document.querySelector('.addForm').innerHTML = renderAddFiles();
+        break;
+     
         default: 
 
         // empty HTML for main and add div form-container
