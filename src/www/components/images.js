@@ -39,6 +39,20 @@ async function getImages(){
 
     renderImages();
 }
+//delete image from computer and from database
+async function deleteImage(id) {
+    let result = await fetch('api/images/' + id);
+    images = await result.json();
+    
+    console.log(images);
+
+    let resultImage = await fetch('api/images/' + id, {
+        method: "DELETE",
+        body: JSON.stringify(images)
+    });
+    
+    getImages();
+}
 
 //render images as list
 function renderImages() {
@@ -54,7 +68,7 @@ function renderImages() {
             <div id="listTxt">
                 <a href="${image.fileUrl}"> <img src="${image.fileUrl}" alt="thumbnail n/a"><h3>${image.header}</h3></a>
                 <br>
-                <button onclick="deleteImage()"><i class="fas fa-trash-alt"></i></button>
+                <button onclick="deleteImage(${image.id})"><i class="fas fa-trash-alt"></i></button>
                 <br>
             </div>
         `;

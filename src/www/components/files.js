@@ -40,6 +40,20 @@ async function getFiles(){
     renderFiles();
 }
 
+async function deleteFile(id) {
+    let result = await fetch('api/files/' + id);
+    files = await result.json();
+    
+    console.log(files);
+
+    let resultFiles = await fetch('api/files/' + id, {
+        method: "DELETE",
+        body: JSON.stringify(files)
+    });
+    
+    getFiles();
+}
+
 function renderFiles() {
     let fileList = document.querySelector(".file-container");
 
@@ -53,7 +67,7 @@ function renderFiles() {
             <div id="listTxt">
                 <a href="${file.fileUrl}"><i class="fas fa-file-archive"></i>   <h3>${file.header}</h3></a>
                 <br>
-                <button onclick="deleteFile()"><i class="fas fa-trash-alt"></i></button>
+                <button onclick="deleteFile(${file.id})"><i class="fas fa-trash-alt"></i></button>
                 <br>
             </div>
         `;
