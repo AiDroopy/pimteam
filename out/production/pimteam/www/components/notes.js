@@ -66,7 +66,7 @@ async function deleteNote(id){
     getNotes();
 }
 
-
+// Go to specifik note editpage 
 async function goNote(id){
 
     let result = await fetch('api/notes/' + id);
@@ -78,7 +78,8 @@ async function goNote(id){
 
     renderNote();
 }
-    
+
+//renders a form for a specifik note
 function renderNote(){
     
     document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="editNote(${oneNote.id})"></form>`;
@@ -90,6 +91,7 @@ function renderNote(){
     `
 }
 
+//edit notes in a form and update in database
 async function editNote(id){
 
     let headerInput = document.querySelector('#header');
@@ -97,7 +99,8 @@ async function editNote(id){
 
     let note = {
         /*Always user 1, until login works. Global user*/
-
+        id: id,
+        userId: 1,
         header: headerInput.value,
         notes: notesInput.value,
     }
@@ -108,6 +111,8 @@ async function editNote(id){
     });
 
     console.log(await result.text())
+
+    alert("Note Edited!");
 
 }
 

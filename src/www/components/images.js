@@ -1,3 +1,4 @@
+//Render form to add images
 function renderAddImage(){
     return `
     <h3>Upload Image</h3>
@@ -6,7 +7,7 @@ function renderAddImage(){
                     <button id="addBtn" type="submit">Add image</button>
     `
 }
-
+//function to uppload image on server and database
 async function uploadImage(e) {
     e.preventDefault()
 
