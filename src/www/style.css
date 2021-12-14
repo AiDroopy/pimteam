@@ -6,9 +6,7 @@
 
 a {
     text-decoration: none;
-    width: 20%;
-    
-
+    width: 20%; 
 }
 
 h1 {
@@ -126,7 +124,7 @@ footer {
     overflow-y: auto;
 }
 
-/*add note css-styles*/
+/*add note/file/image css-styles*/
 form {
     max-width: 400px;
     margin: auto;
