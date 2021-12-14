@@ -49,10 +49,17 @@ function changePage() {
 
         // "View / edit a note by id"
         case "editNotes":
-           
-            document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="goNote(event)"></form>`;
-            document.querySelector('.addForm').innerHTML = renderEditNotes();
-            
+        
+
+            let noteId = window.sessionStorage.getItem('editNoteId');
+            if(noteId !== undefined){  
+                goNote(noteId); 
+            } else {
+                location.hash = "";
+                window.sessionStorage.removeItem('editNoteId')
+            }
+
+
         break;
 
         default: 
