@@ -12,8 +12,8 @@ function renderAddNotes(){
 }
 
 //Create and add note to database
-async function createNote(e) {
-    e.preventDefault();
+async function createNote(event) {
+    event.preventDefault();
 
     let headerInput = document.querySelector('#header');
     let notesInput = document.querySelector('#notes');
@@ -62,22 +62,50 @@ async function deleteNote(id){
     getNotes();
 }
 
-async function goNote(e, id){
-
-    e.preventDefault();
+async function goNote(id){
 
     let result = await fetch('api/notes/' + id);
     notes = await result.json();
+    
+    console.log(notes.id)
 
-    console.log(notes);
+    window.sessionStorage.setItem('editNoteId', notes.id);
 
+    renderNote();
+}
+    
+function renderNote(){
+    
+    document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="editNote(event)"></form>`;
+    document.querySelector('.addForm').innerHTML =
+    ` <h3>Update note</h3>
+    <textarea id="header" required type="text">${notes.header}</textarea>
+    <textarea id="notes" cols="30" rows="10">${notes.notes}</textarea>
+    <button id="addBtn" type="submit">Update note</button>
+    `
 }
 
-function renderEditNotes(){
-    return `<h3>Create note</h3> <input id="header" required type="text" placeholder="header">
-    <textarea id="notes" required placeholder="content" cols="30" rows="10"></textarea>
-<button id="addBtn" type="submit">Add note</button>
-`;
+async function editNote(){
+
+    let headerInput = document.querySelector('#header');
+    let notesInput = document.querySelector('#notes');
+
+    let note = {
+        /*Always user 1, until login works. Global user*/
+        header: headerInput.value,
+        notes: notesInput.value,
+    }
+
+    let result = await fetch("api/notes/" + id, {
+        method: "PUT",
+        body: JSON.stringify(note)
+    });
+
+    notes.push(note)
+
+    console.log(await result.text())
+
+    renderNotes();
 }
 
 // render all notes as a list of notes
@@ -85,21 +113,23 @@ function renderEditNotes(){
 function renderNotes(){
     let noteList = document.querySelector('.note-container');
 
-    noteList.innerHTML = "<a id='addBtn' href=#addNote><i class='fas fa-plus'></i> Add note</a>";
+    noteList.innerHTML = "<a id='addBtn' href=#addNote><i class='fas fa-plus'></i>Add note</a>";
 
-    for(let note of notes){
+    for(let loopNote of notes){
 
         let noteLi = `
             <div id="listTxt">
-                <button onclick="goNote(${note.id})"><h2>${note.header}</h2>
-                <!-- <a href="#editNotes/${note.id}"><h2>${note.header}</h2></a>   -->
-                <h3>${note.notes}</h3> 
+                <a href="#editNotes" onclick="goNote(${loopNote.id})"><h2>${loopNote.header}</h2></a>
+                <h3>${loopNote.notes}</h3><h4><button onclick="deleteNote(${loopNote.id})"><i class="fas fa-trash-alt"></i></button></h4>
+                
                 <br>
-                <button onclick="deleteNote(${note.id})"><i class="fas fa-trash-alt"></i></button>
+                <br>
+                
             </div>
         `;
 
         noteList.innerHTML += noteLi;
+
     }
 }
 
