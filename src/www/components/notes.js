@@ -130,8 +130,6 @@ function renderNotes(){
 
         noteList.innerHTML += noteLi;
 
-       
-
     }
 }
 
