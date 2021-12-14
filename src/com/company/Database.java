@@ -70,23 +70,6 @@ public class Database {
         }
     }
 
-    public void updateNote(Note note){
-        try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Notes SET notes=?, UserId=?, header=? WHERE id=?");
-            stmt.setString(1, note.getNotes());
-            stmt.setInt(2, note.getUserId());
-            stmt.setString(3, note.getHeader());
-            stmt.setInt(4, note.getId());
-
-            stmt.executeUpdate();
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     // Returns true if operation was a success, false if Error
     public boolean deleteNote(Note note){
         try {
@@ -102,54 +85,6 @@ public class Database {
 
 
         return false;
-    }
-
-    /**
-     *
-     * @param header
-     * @return
-     */
-    // SELECT * FROM Notes WHERE header LIKE '%irs%'
-    public Note[] getNoteByHeader(String header){
-        Note[] note = null;
-
-        try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notes WHERE header LIKE ?");
-            stmt.setString(1, "%"+ header +"%");
-
-            ResultSet rs = stmt.executeQuery();
-
-            Note[] headerFromRS = (Note[]) Utils.resultSetToObject(rs, Note[].class);
-
-            note = headerFromRS;
-
-
-        } catch (SQLException | JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        return note;
-    }
-
-    public Note[] getNoteByNotes(String searchNotes){
-        Note[] note = null;
-
-        try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Notes WHERE notes LIKE ?");
-            stmt.setString(1, "%"+ searchNotes +"%");
-
-            ResultSet rs = stmt.executeQuery();
-
-            Note[] notesFromRS = (Note[]) Utils.resultSetToObject(rs, Note[].class);
-
-            note = notesFromRS;
-
-
-        } catch (SQLException | JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        return note;
     }
 
 
@@ -176,7 +111,7 @@ public class Database {
         return false;
     }
 
-    public List<Attachment> getImageHeaders(){
+    public List<Attachment> getImages(){
         List<Attachment> imageHeaders = null;
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Image");
@@ -194,7 +129,7 @@ public class Database {
         return imageHeaders;
     }
 
-    public Attachment getImageHeaderById(int id){
+    public Attachment getImageById(int id){
         Attachment attachment = null;
 
         try {
@@ -249,7 +184,7 @@ public class Database {
         return false;
     }
 
-    public List<Attachment> getFileHeaders(){
+    public List<Attachment> getFiles(){
         List<Attachment> attachment = null;
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Files");
@@ -267,7 +202,7 @@ public class Database {
         return attachment;
     }
 
-    public Attachment getFileHeaderById(int id){
+    public Attachment getFileById(int id){
         Attachment attachment = null;
 
         try {

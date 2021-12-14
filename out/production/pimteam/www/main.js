@@ -47,21 +47,6 @@ function changePage() {
             document.querySelector('.addForm').innerHTML = renderAddImage();
         break;
 
-        // "View / edit a note by id"
-        case "editNotes":
-
-            let noteId = window.sessionStorage.getItem('editNoteId');
-           
-            if(noteId !== undefined){  
-                goNote(noteId);
-                
-            } else {
-                location.hash = "";
-            }
-
-
-        break;
-
         default: 
 
         // empty HTML for main and add div form-container

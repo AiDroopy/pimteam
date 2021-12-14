@@ -43,13 +43,6 @@ public class Main {
             res.send(note.getHeader() + " created");
         });
 
-        // Update a Note
-        app.put("/api/notes/:id", (req, res) -> {
-            Note note = (Note) req.body(Note.class);
-            db.updateNote(note);
-            res.send(note.getHeader() + " updated!");
-        });
-
         // Delete Note
         app.delete("api/notes/:id", (req, res) -> {
             Note note = (Note) req.body(Note.class);
@@ -62,21 +55,6 @@ public class Main {
             else res.send("Something went really wrong!");
         });
 
-        // Search Note by header
-        app.get("api/notes/search/header/:header", (req, res) ->{
-            String header = (String) (req.params("header"));
-            Note note[] = db.getNoteByHeader(header);
-            res.json(note);
-
-        });
-
-        // Search Note by bodyText
-        app.get("api/notes/search/notes/:notes", (req, res) ->{
-            String notes = (String) (req.params("notes"));
-            Note note[] = db.getNoteByNotes(notes);
-            res.json(note);
-
-        });
 
 
 
@@ -107,20 +85,20 @@ public class Main {
 
         //Get all Images
         app.get("/api/images", (req, res) -> {
-            List<Attachment> images = db.getImageHeaders();
+            List<Attachment> images = db.getImages();
             res.json(images);
         });
 
         // Get Image by id
         app.get("api/images/:id", (req, res) ->{
             int id = Integer.parseInt(req.params("id"));
-            Attachment attachment = db.getImageHeaderById(id);
+            Attachment attachment = db.getImageById(id);
             res.json(attachment);
         });
 
         app.delete("api/images/:id", (req, res) -> {
             int id = Integer.parseInt(req.params("id"));
-            Attachment attachment = db.getImageHeaderById(id);
+            Attachment attachment = db.getImageById(id);
 
             String imageUrl =  "./src/www" + attachment.getFileUrl();
             Path filePath = Paths.get(imageUrl);
@@ -135,7 +113,7 @@ public class Main {
 
 
 
-            res.json("OK"); // borde vi skicka tillbaka detta?
+            res.json("OK");
 
         });
 
@@ -143,7 +121,6 @@ public class Main {
 
         //upload Files
         app.post("/api/files", (req, res) -> {
-            //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
             UploadedFile file = req.formDataFile("files");          // get a single file
             String header = req.formData("header"); // created header key-value
 
@@ -160,27 +137,25 @@ public class Main {
             boolean test = db.setFilesUrl(attachment);
             System.out.println(test); // debug statement true or false
             res.send("OK");
-            // with FileUtil (creates dirs if necessary)
-            //FileUtil.streamToFile(file.getContent(), "src/files/1/" + file.getFilename());
         });
 
         // Get all Files
         app.get("/api/files", (req, res) -> {
-            List<Attachment> files = db.getFileHeaders();
+            List<Attachment> files = db.getFiles();
             res.json(files);
         });
 
         // Get File by id
         app.get("api/files/:id", (req, res) ->{
             int id = Integer.parseInt(req.params("id"));
-            Attachment attachment = db.getFileHeaderById(id);
+            Attachment attachment = db.getFileById(id);
             res.json(attachment);
         });
 
         // Delete file   /
         app.delete("api/files/:id", (req, res) -> {
             int id = Integer.parseInt(req.params("id"));
-            Attachment attachment = db.getFileHeaderById(id);
+            Attachment attachment = db.getFileById(id);
 
             String fileUrl = "./src/www" + attachment.getFileUrl();
             Path filePath = Paths.get(fileUrl);
@@ -200,7 +175,7 @@ public class Main {
         });
 
         // Server loop
-        app.listen(3000);
+        app.listen(3030);
         System.out.println("Server started on port 3000");
 
     }
