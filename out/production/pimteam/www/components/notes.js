@@ -33,6 +33,10 @@ async function createNote(event) {
     notes.push(note)
 
     console.log(await result.text())
+
+    alert("Note Created");
+
+    window.location.reload();
 }
 
 //get notes from database using our Express-server routes
@@ -62,36 +66,38 @@ async function deleteNote(id){
     getNotes();
 }
 
+
 async function goNote(id){
 
     let result = await fetch('api/notes/' + id);
-    notes = await result.json();
+    oneNote = await result.json();
     
-    console.log(notes.id)
+    console.log(oneNote.id)
 
-    window.sessionStorage.setItem('editNoteId', notes.id);
-    
+    window.sessionStorage.setItem('editNoteId', oneNote.id);
+
     renderNote();
 }
     
 function renderNote(){
     
-    document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="editNote(event)"></form>`;
+    document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="editNote(${oneNote.id})"></form>`;
     document.querySelector('.addForm').innerHTML =
     ` <h3>Update note</h3>
-    <textarea id="header" required type="text">${notes.header}</textarea>
-    <textarea id="notes" cols="30" rows="10">${notes.notes}</textarea>
+    <textarea id="header" required type="text">${oneNote.header}</textarea>
+    <textarea id="notes" cols="30" rows="10">${oneNote.notes}</textarea>
     <button id="addBtn" type="submit">Update note</button>
     `
 }
 
-async function editNote(){
+async function editNote(id){
 
     let headerInput = document.querySelector('#header');
     let notesInput = document.querySelector('#notes');
 
     let note = {
         /*Always user 1, until login works. Global user*/
+
         header: headerInput.value,
         notes: notesInput.value,
     }
@@ -101,11 +107,8 @@ async function editNote(){
         body: JSON.stringify(note)
     });
 
-    notes.push(note)
-
     console.log(await result.text())
 
-    renderNotes();
 }
 
 // render all notes as a list of notes
@@ -119,16 +122,16 @@ function renderNotes(){
 
         let noteLi = `
             <div id="listTxt">
-                <a href="#editNotes" onclick="goNote(${loopNote.id})"><h2>${loopNote.header}</h2></a>
-                <h3>${loopNote.notes}</h3> 
+                <a href="#editNotes/${loopNote.id}" onclick="goNote(${loopNote.id})"><h2>${loopNote.header}</h2></a>
+                <h3>${loopNote.notes}</h3><h4><button onclick="deleteNote(${loopNote.id})"><i class="fas fa-trash-alt"></i></button></h4>
+                
                 <br>
-                <button onclick="deleteNote(${loopNote.id})"><i class="fas fa-trash-alt"></i></button>
+                <br>
+                
             </div>
         `;
 
         noteList.innerHTML += noteLi;
-
-       
 
     }
 }

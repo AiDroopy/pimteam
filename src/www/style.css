@@ -7,16 +7,17 @@
 a {
     text-decoration: none;
     width: 20%;
-    margin: auto;
+    
+
 }
 
 h1 {
-    text-align: left;
-    width: 100px;
-    padding: 1%; 
+    float: left;
+    padding: 5%; 
+    width: 20%;
+    margin: auto;
     font-family: 'Quicksand', sans-serif;
     color: #94524A;
-    display: inline-block;
 }
 header {
     height: 15vh;
@@ -97,15 +98,13 @@ h2{
 .image-container #listTxt{
     color: #94524A;
     font-family: 'Quicksand', sans-serif;
-    text-align: left;
-    font-size: 18px;
-    /* border: 2px solid #CADBC0; */
-    border-radius: 5px;
 
 }
-.file-container .i{
-    /* text-align: right;
-    float: right; */
+.file-container h4,
+.note-container h4,
+.image-container h4{
+    text-align: right;
+    float: right;
 }
 #listTxt h3 {
     float: left;
@@ -114,7 +113,7 @@ h2{
 }
 
 .form-container i{
-    font-size: 50px;
+    font-size: 45px;
 }
 
 footer {

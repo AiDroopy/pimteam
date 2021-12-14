@@ -78,9 +78,6 @@ public class Main {
 
         });
 
-
-
-
         // upload Images
         app.post("/api/images", (req, res) -> {
             
