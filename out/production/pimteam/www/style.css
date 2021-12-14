@@ -86,7 +86,7 @@ h2{
 .note-container,
 .file-container,
 .image-container{
-    width: 25%;
+    width: 35%;
     padding: 5%;
     margin: auto;
     display: flex;
@@ -97,18 +97,18 @@ h2{
 .image-container #listTxt{
     color: #94524A;
     font-family: 'Quicksand', sans-serif;
-    text-align: left;
-    font-size: 18px;
-    border: 2px solid #CADBC0;
-    border-radius: 5px;
+    /* text-align: left;
+    font-size: 18px; */
+    /* border: 2px solid #CADBC0; */
+    /* border-radius: 5px; */
 
 }
 .file-container .i{
-    text-align: right;
-    float: right;
+    /* text-align: right;
+    float: right; */
 }
 #listTxt h3 {
-    float: right;
+    float: left;
     margin-right: 10px;
     text-align: left;
 }
