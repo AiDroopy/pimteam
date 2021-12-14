@@ -4,6 +4,7 @@ import express.Express;
 import io.javalin.http.UploadedFile;
 
 import java.io.FileOutputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -77,6 +78,9 @@ public class Main {
 
         });
 
+
+
+
         // upload Images
         app.post("/api/images", (req, res) -> {
             //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
@@ -117,6 +121,28 @@ public class Main {
             res.json(attachment);
         });
 
+        app.delete("api/images/:id", (req, res) -> {
+            int id = Integer.parseInt(req.params("id"));
+            Attachment attachment = db.getImageHeaderById(id);
+
+            String imageUrl =  "./src/www" + attachment.getFileUrl();
+            Path filePath = Paths.get(imageUrl);
+
+
+            System.out.println(filePath);
+            Boolean test = db.deleteImage(attachment);
+            //System.out.print(test);
+            Files.deleteIfExists(filePath);
+
+            //System.out.println(attachment.toString());
+
+
+
+            res.json(filePath);
+
+        });
+
+
 
         //upload Files
         app.post("/api/files", (req, res) -> {
@@ -154,6 +180,27 @@ public class Main {
             res.json(attachment);
         });
 
+        // Delete file   /
+        app.delete("api/files/:id", (req, res) -> {
+            int id = Integer.parseInt(req.params("id"));
+            Attachment attachment = db.getFileHeaderById(id);
+
+            String fileUrl = "./src/www" + attachment.getFileUrl();
+            Path filePath = Paths.get(fileUrl);
+
+
+            System.out.println(filePath);
+            Boolean test = db.deleteFile(attachment);
+            //System.out.print(test);
+            Files.deleteIfExists(filePath);
+
+            //System.out.println(attachment.toString());
+
+
+
+            res.json(filePath);
+
+        });
 
         // Server loop
         app.listen(3000);
