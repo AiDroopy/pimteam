@@ -83,7 +83,7 @@ public class Main {
 
         // upload Images
         app.post("/api/images", (req, res) -> {
-            //List<UploadedFile> files = req.formDataFiles("files");  // get files as list
+            
             UploadedFile file = req.formDataFile("image"); // get a single file
             String header = req.formData("header"); // created header key-value
 
@@ -103,8 +103,6 @@ public class Main {
                 res.send("OK");
             }
 
-            // with FileUtil (creates dirs if necessary) !!!! ANVÄNDER VI TILL CREATE USER!!!
-            // FileUtil.streamToFile(file.getContent(), "src/images/" + file.getFilename());
         });
 
         //Get all Images
@@ -137,7 +135,7 @@ public class Main {
 
 
 
-            res.json(filePath);
+            res.json("OK"); // borde vi skicka tillbaka detta?
 
         });
 
@@ -197,7 +195,7 @@ public class Main {
 
 
 
-            res.json(filePath);
+            res.json("OK");
 
         });
 
