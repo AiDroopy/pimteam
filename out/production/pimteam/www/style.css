@@ -97,15 +97,13 @@ h2{
 .image-container #listTxt{
     color: #94524A;
     font-family: 'Quicksand', sans-serif;
-    /* text-align: left;
-    font-size: 18px; */
-    /* border: 2px solid #CADBC0; */
-    /* border-radius: 5px; */
 
 }
-.file-container .i{
-    /* text-align: right;
-    float: right; */
+.file-container h4,
+.note-container h4,
+.image-container h4{
+    text-align: right;
+    float: right;
 }
 #listTxt h3 {
     float: left;

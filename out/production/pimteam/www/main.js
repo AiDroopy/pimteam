@@ -10,6 +10,7 @@ changePage();
 function changePage() {
 
     let page = location.hash.replace('#', '');
+    let noteId = window.sessionStorage.getItem('editNoteId');
 
     switch(page){
         
@@ -48,17 +49,15 @@ function changePage() {
         break;
 
         // "View / edit a note by id"
-        case "editNotes":
-
-            let noteId = window.sessionStorage.getItem('editNoteId');
+        case "editNotes/" + noteId:
            
             if(noteId !== undefined){  
                 goNote(noteId);
                 
             } else {
                 location.hash = "";
+                
             }
-
 
         break;
 
