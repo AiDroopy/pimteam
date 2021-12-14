@@ -103,7 +103,6 @@ public class Main {
                 res.send("OK");
             }
 
-
             // with FileUtil (creates dirs if necessary) !!!! ANVÄNDER VI TILL CREATE USER!!!
             // FileUtil.streamToFile(file.getContent(), "src/images/" + file.getFilename());
         });

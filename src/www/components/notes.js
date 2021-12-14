@@ -45,28 +45,43 @@ async function getNotes(){
     renderNotes();
 }
 
-// Get note by ID
-/*
-async function getNoteById(id){
-    let result = await fetch('api/notes/' + id);
-    method: 
-    note = await result.json();
 
-    console.log(note);
-
-    renderNote();
-}
-*/
+//Delete note by trashcan
 async function deleteNote(id){
-       
-        let result = await fetch('api/notes/' + id);
-        method: "GET"
-        let note = await result.json();
 
-    console.log(note)
+    let result = await fetch('api/notes/' + id);
+    notes = await result.json();
+    
+    console.log(notes);
+
+    let resultNote = await fetch('api/notes/' + id, {
+        method: "DELETE",
+        body: JSON.stringify(notes)
+    });
+    
+    getNotes();
+}
+
+async function goNote(e, id){
+
+    e.preventDefault();
+
+    let result = await fetch('api/notes/' + id);
+    notes = await result.json();
+
+    console.log(notes);
+
+}
+
+function renderEditNotes(){
+    return `<h3>Create note</h3> <input id="header" required type="text" placeholder="header">
+    <textarea id="notes" required placeholder="content" cols="30" rows="10"></textarea>
+<button id="addBtn" type="submit">Add note</button>
+`;
 }
 
 // render all notes as a list of notes
+
 function renderNotes(){
     let noteList = document.querySelector('.note-container');
 
@@ -76,7 +91,8 @@ function renderNotes(){
 
         let noteLi = `
             <div id="listTxt">
-                <a href="#notes/${note.id}"><h2>${note.header}</h2></a>  
+                <button onclick="goNote(${note.id})"><h2>${note.header}</h2>
+                <!-- <a href="#editNotes/${note.id}"><h2>${note.header}</h2></a>   -->
                 <h3>${note.notes}</h3> 
                 <br>
                 <button onclick="deleteNote(${note.id})"><i class="fas fa-trash-alt"></i></button>

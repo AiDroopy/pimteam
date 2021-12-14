@@ -48,11 +48,11 @@ function changePage() {
         break;
 
         // "View / edit a note by id"
-        case "goNote":
+        case "editNotes":
            
-            document.querySelector('main').innerHTML = `<div class='note-container'></div>`;
-            document.querySelector('.note-container').innerHTML = getNotesById();
-            console.log("goNote");
+            document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="goNote(event)"></form>`;
+            document.querySelector('.addForm').innerHTML = renderEditNotes();
+            
         break;
 
         default: 
