@@ -6,17 +6,16 @@
 
 a {
     text-decoration: none;
-    width: 20%;
-    margin: auto;
+    width: 20%; 
 }
 
 h1 {
-    text-align: left;
-    width: 100px;
-    padding: 1%; 
+    float: left;
+    padding: 5%; 
+    width: 20%;
+    margin: auto;
     font-family: 'Quicksand', sans-serif;
     color: #94524A;
-    display: inline-block;
 }
 header {
     height: 15vh;
@@ -112,7 +111,7 @@ h2{
 }
 
 .form-container i{
-    font-size: 50px;
+    font-size: 45px;
 }
 
 footer {
@@ -125,7 +124,7 @@ footer {
     overflow-y: auto;
 }
 
-/*add note css-styles*/
+/*add note/file/image css-styles*/
 form {
     max-width: 400px;
     margin: auto;

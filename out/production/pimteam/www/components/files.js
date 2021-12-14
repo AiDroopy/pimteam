@@ -1,5 +1,6 @@
 let uploads = [];
 
+//render form to add files
 function renderAddFiles(){
     return `
     <h3>Upload file</h3>
@@ -9,6 +10,7 @@ function renderAddFiles(){
     `
 }
 
+//function for uploading files to server and database
 async function uploadFile(e) {
     e.preventDefault()
 
@@ -31,6 +33,7 @@ async function uploadFile(e) {
     });
 }
 
+//Get all files and show on api
 async function getFiles(){
     let result = await fetch('/api/files');
     files = await result.json();
@@ -40,6 +43,7 @@ async function getFiles(){
     renderFiles();
 }
 
+//Delete files from both server and database
 async function deleteFile(id) {
     let result = await fetch('api/files/' + id);
     files = await result.json();
@@ -54,6 +58,7 @@ async function deleteFile(id) {
     getFiles();
 }
 
+//Render all files as a list 
 function renderFiles() {
     let fileList = document.querySelector(".file-container");
 
