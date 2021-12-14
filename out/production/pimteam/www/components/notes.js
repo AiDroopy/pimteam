@@ -62,17 +62,15 @@ async function deleteNote(id){
     getNotes();
 }
 
-let note;
-
 async function goNote(id){
 
     let result = await fetch('api/notes/' + id);
-    note = await result.json();
+    notes = await result.json();
     
-    console.log(note.id)
+    console.log(notes.id)
 
-    window.sessionStorage.setItem('editNoteId', note.id);
-
+    window.sessionStorage.setItem('editNoteId', notes.id);
+    
     renderNote();
 }
     
@@ -81,8 +79,8 @@ function renderNote(){
     document.querySelector('main').innerHTML = `<form class='addForm' onsubmit="editNote(event)"></form>`;
     document.querySelector('.addForm').innerHTML =
     ` <h3>Update note</h3>
-    <textarea id="header" required type="text">${note.header}</textarea>
-    <textarea id="notes" cols="30" rows="10">${note.notes}</textarea>
+    <textarea id="header" required type="text">${notes.header}</textarea>
+    <textarea id="notes" cols="30" rows="10">${notes.notes}</textarea>
     <button id="addBtn" type="submit">Update note</button>
     `
 }
@@ -129,6 +127,9 @@ function renderNotes(){
         `;
 
         noteList.innerHTML += noteLi;
+
+       
+
     }
 }
 

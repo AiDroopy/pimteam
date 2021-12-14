@@ -49,14 +49,14 @@ function changePage() {
 
         // "View / edit a note by id"
         case "editNotes":
-        
 
             let noteId = window.sessionStorage.getItem('editNoteId');
+           
             if(noteId !== undefined){  
-                goNote(noteId); 
+                goNote(noteId);
+                
             } else {
                 location.hash = "";
-                window.sessionStorage.removeItem('editNoteId')
             }
 
 
