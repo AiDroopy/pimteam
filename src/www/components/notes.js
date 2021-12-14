@@ -33,6 +33,11 @@ async function createNote(event) {
     notes.push(note)
 
     console.log(await result.text())
+
+    alert("Note Created");
+
+    window.location.reload();
+
 }
 
 //get notes from database using our Express-server routes

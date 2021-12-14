@@ -75,7 +75,7 @@ function renderNotes(){
 
         let noteLi = `
             <div id="listTxt">
-                <a href="#editNotes" onclick="goNote(${loopNote.id})"><h2>${loopNote.header}</h2></a>
+                <h2>${loopNote.header}</h2>
                 <h3>${loopNote.notes}</h3><h4><button onclick="deleteNote(${loopNote.id})"><i class="fas fa-trash-alt"></i></button></h4>
                 
                 <br>
