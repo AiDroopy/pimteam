@@ -113,7 +113,7 @@ async function editNote(id){
     console.log(await result.text())
 
     alert("Note Edited!");
-
+    window.location.reload();
 }
 
 // render all notes as a list of notes

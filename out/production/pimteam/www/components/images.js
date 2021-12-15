@@ -3,8 +3,8 @@ function renderAddImage(){
     return `
     <h3>Upload Image</h3>
                     <input id="header" required type="text" placeholder="header">
-                    <input type="file" placeholder="select image">
-                    <button id="addBtn" type="submit">Add image</button>
+                    <input type="file" placeholder="select image to upload">
+                    <button href="#images" id="addBtn" type="submit">Upload image</button>
     `
 }
 //function to uppload image on server and database
@@ -28,6 +28,7 @@ async function uploadImage(e) {
         method: 'POST',
         body: formData
     });
+    alert("Image uploaded!")
 
 }
 
@@ -51,8 +52,7 @@ async function deleteImage(id) {
         method: "DELETE",
         body: JSON.stringify(images)
     });
-    
-    getImages();
+    alert("Image deleted from server")
 }
 
 //render images as list
@@ -60,7 +60,7 @@ function renderImages() {
     let imageList = document.querySelector(".image-container");
 
     // clear list before update
-    imageList.innerHTML = "<a id='addBtn' href=#addImage><i class='fas fa-plus'></i> Add image</a>";
+    imageList.innerHTML = "<a id='addBtn' href=#addImage><i class='fas fa-plus'></i> Add image</a><br>";
 
     for(let image of images) {
         let date = new Date(image.timestamp).toLocaleString();
@@ -68,8 +68,7 @@ function renderImages() {
         let imgLi = `
             <div id="listTxt">
                 <a href="${image.fileUrl}"> <img src="${image.fileUrl}" alt="thumbnail n/a"><h3>${image.header}</h3></a>
-                <br>
-                <button onclick="deleteImage(${image.id})"><i class="fas fa-trash-alt"></i></button>
+                <h4><button onclick="deleteImage(${image.id})"><i class="fas fa-trash-alt"></i></button></h4>
                 <br>
             </div>
         `;
