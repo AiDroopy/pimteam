@@ -31,6 +31,9 @@ async function uploadFile(e) {
         method: 'POST',
         body: formData
     });
+
+    alert("File Uploaded!");
+    window.location.reload();
 }
 
 //Get all files and show on api
@@ -54,7 +57,7 @@ async function deleteFile(id) {
         method: "DELETE",
         body: JSON.stringify(files)
     });
-    
+    alert("File deleted");
     getFiles();
 }
 
@@ -63,7 +66,7 @@ function renderFiles() {
     let fileList = document.querySelector(".file-container");
 
     // clear list before update
-    fileList.innerHTML = "<a id='addBtn' href=#addFile><i class='fas fa-plus'></i> Add file</a>";
+    fileList.innerHTML = "<a id='addBtn' href=#addFile><i class='fas fa-plus'></i> Add file</a><br>";
 
     for(let file of files) {
         let date = new Date(file.timestamp).toLocaleString();
@@ -71,8 +74,7 @@ function renderFiles() {
         let fileLi = `
             <div id="listTxt">
                 <a href="${file.fileUrl}"><i class="fas fa-file-archive"></i>   <h3>${file.header}</h3></a>
-                <br>
-                <button onclick="deleteFile(${file.id})"><i class="fas fa-trash-alt"></i></button>
+                <h4><button onclick="deleteFile(${file.id})"><i class="fas fa-trash-alt"></i></button></h4>
                 <br>
             </div>
         `;
