@@ -4,7 +4,7 @@ function renderAddImage(){
     <h3>Upload Image</h3>
                     <input id="header" required type="text" placeholder="header">
                     <input type="file" placeholder="select image to upload">
-                    <button href="#images" id="addBtn" type="submit">Upload image</button>
+                    <button id="addBtn" type="submit">Upload image</button>
     `
 }
 //function to uppload image on server and database
@@ -29,7 +29,7 @@ async function uploadImage(e) {
         body: formData
     });
     alert("Image uploaded!")
-
+    window.location.reload();
 }
 
 // get images and render as list on page
@@ -53,6 +53,7 @@ async function deleteImage(id) {
         body: JSON.stringify(images)
     });
     alert("Image deleted from server")
+    window.location.reload();
 }
 
 //render images as list
@@ -67,8 +68,9 @@ function renderImages() {
 
         let imgLi = `
             <div id="listTxt">
-                <a href="${image.fileUrl}"> <img src="${image.fileUrl}" alt="thumbnail n/a"><h3>${image.header}</h3></a>
+                <a href="${image.fileUrl}"> <img src="${image.fileUrl}" alt="thumbnail n/a"></a>
                 <h4><button onclick="deleteImage(${image.id})"><i class="fas fa-trash-alt"></i></button></h4>
+                <br>
                 <br>
             </div>
         `;

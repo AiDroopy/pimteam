@@ -68,8 +68,9 @@ function renderImages() {
 
         let imgLi = `
             <div id="listTxt">
-                <a href="${image.fileUrl}"> <img src="${image.fileUrl}" alt="thumbnail n/a"><h3>${image.header}</h3></a>
+                <a href="${image.fileUrl}"> <img src="${image.fileUrl}" alt="thumbnail n/a"></a>
                 <h4><button onclick="deleteImage(${image.id})"><i class="fas fa-trash-alt"></i></button></h4>
+                <br>
                 <br>
             </div>
         `;

@@ -73,7 +73,7 @@ function renderFiles() {
 
         let fileLi = `
             <div id="listTxt">
-                <a href="${file.fileUrl}"><i class="fas fa-file-archive"></i>   <h3>${file.header}</h3></a>
+                <a href="${file.fileUrl}"><h3><i class="fas fa-file-archive"></i>    ${file.header}</h3></a>
                 <h4><button onclick="deleteFile(${file.id})"><i class="fas fa-trash-alt"></i></button></h4>
                 <br>
             </div>
