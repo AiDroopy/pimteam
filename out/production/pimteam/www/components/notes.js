@@ -121,7 +121,8 @@ async function editNote(id){
 function renderNotes(){
     let noteList = document.querySelector('.note-container');
 
-    noteList.innerHTML = `<a id='addBtn' href=#addNote><i class='fas fa-plus'></i>Add note</a><button onclick="sortByheader()">Sort</button>`;
+    noteList.innerHTML = `<a id='addBtn' href=#addNote><i class='fas fa-plus'></i>Add note</a><br>
+    <h3><button id="addBtn" onclick="sortByheader()">Sort by header</button></h3><br><h3><button id="addBtn" onclick="sortByheader()">Sort by header</button></h3><br>`;
 
     for(let loopNote of notes){
 
@@ -142,9 +143,14 @@ function renderNotes(){
 }
 
 
-function sortByheader(){
+function sortByheaderAZ(){
     
     console.log(notes.sort((a, b) => a.header.localeCompare(b.header)));
 
     renderNotes();
+}
+
+function sortByheaderZA(){
+    
+   window.location.reload();
 }
