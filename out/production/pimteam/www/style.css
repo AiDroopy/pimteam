@@ -82,6 +82,12 @@ h2{
     flex-direction: row;
     justify-content: space-around;
 }
+a .quickLink{
+    width: auto;
+    size:100%;
+    margin: 0;
+
+}
 .note-container,
 .file-container,
 .image-container{

@@ -10,6 +10,8 @@ changePage();
 function changePage() {
 
     let page = location.hash.replace('#', '');
+
+    //get ID for specific note to redirect to specific note-page
     let noteId = window.sessionStorage.getItem('editNoteId');
 
     switch(page){

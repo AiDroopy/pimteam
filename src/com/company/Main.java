@@ -9,6 +9,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+/**
+ * Java-Express settings and definitions. Select path for server, set routing/api/endpoints.
+ * Set starting server for localhost port:3000.
+ * Database class connection for endpoints.
+ */
 public class Main {
     public static void main(String[] args) {
 
@@ -189,8 +194,6 @@ public class Main {
             Files.deleteIfExists(filePath);
 
             //System.out.println(attachment.toString());
-
-
 
             res.json("OK");
 

@@ -3,6 +3,9 @@ package com.company;
 import java.sql.Timestamp;
 import java.time.Instant;
 
+/**
+ * Base class for both images and files.
+ */
 
 public class Attachment {
     private int id;

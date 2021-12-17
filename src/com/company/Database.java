@@ -6,8 +6,14 @@ import nosqlite.utilities.Utils;
 import java.sql.*;
 import java.util.List;
 
+/**
+ * This class is used to connect backend to the database.
+ * Different CRUD-methods to database.
+ */
+
 public class Database {
     private Connection conn;
+
 
     public Database(){
         try {
@@ -104,11 +110,6 @@ public class Database {
         return false;
     }
 
-    /**
-     *
-     * @param header
-     * @return
-     */
     // SELECT * FROM Notes WHERE header LIKE '%irs%'
     public Note[] getNoteByHeader(String header){
         Note[] note = null;
@@ -159,7 +160,7 @@ public class Database {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Image (userId, fileUrl, timestamp, header) VALUES(?, ?, ?, ?)");
 
             stmt.setInt(1, 1);
-            stmt.setString(2, attachment.getFileUrl().substring(7));
+            stmt.setString(2, attachment.getFileUrl().substring(7)); //substring to correct path to frontend from database
             stmt.setTimestamp(3, attachment.getTimestamp());
             stmt.setString(4, attachment.getHeader());
 
@@ -234,7 +235,7 @@ public class Database {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Files (userId, fileUrl, timestamp, header) VALUES(?, ?, ?, ?)");
 
             stmt.setInt(1, 1);
-            stmt.setString(2, attachment.getFileUrl().substring(7));
+            stmt.setString(2, attachment.getFileUrl().substring(7)); //substring to correct path to frontend from database
             stmt.setTimestamp(3, attachment.getTimestamp());
             stmt.setString(4, attachment.getHeader());
 
